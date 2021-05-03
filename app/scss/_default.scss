@@ -1,0 +1,82 @@
+// ZEROING SECTION
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  scrollbar-color: #363130 #F2F2F2;
+  scrollbar-width: thin;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scrollbar-color: #363130 #F2F2F2;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+
+      cursor: pointer;
+      width: .5rem;
+      background: #F2F2F2;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+
+      cursor: pointer;
+      background: #363130;
+
+      border-radius: .1rem;
+      -webkit-border-radius: .1rem;
+      -moz-border-radius: .1rem;
+      -ms-border-radius: .1rem;
+      -o-border-radius: .1rem;
+      transition: .2s ease-in-out;
+      -webkit-transition: .2s ease-in-out;
+      -moz-transition: .2s ease-in-out;
+      -ms-transition: .2s ease-in-out;
+      -o-transition: .2s ease-in-out;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      cursor: pointer;
+      background: #878686;
+    }
+  }
+
+  &::-webkit-scrollbar {
+
+    cursor: pointer;
+    width: .5rem;
+    background: #F2F2F2;
+
+  }
+
+  &::-webkit-scrollbar-thumb {
+
+    cursor: pointer;
+    background: #363130;
+
+    border-radius: .1rem;
+    -webkit-border-radius: .1rem;
+    -moz-border-radius: .1rem;
+    -ms-border-radius: .1rem;
+    -o-border-radius: .1rem;
+    transition: .2s ease-in-out;
+    -webkit-transition: .2s ease-in-out;
+    -moz-transition: .2s ease-in-out;
+    -ms-transition: .2s ease-in-out;
+    -o-transition: .2s ease-in-out;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background: #878686;
+  }
+}
+
+*:focus {
+  outline: 0;
+}

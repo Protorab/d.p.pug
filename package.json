@@ -1,0 +1,39 @@
+{
+	"name": "default.build",
+	"version": "3.2.17",
+	"description": "default build",
+	"main": "index.js",
+	"author": "lyaanid lya.an.id@gmail.com",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.12.9",
+		"@babel/preset-env": "^7.12.7",
+		"babel-loader": "^8.2.2",
+		"babel-plugin-module-resolver": "^4.0.0",
+		"browser-sync": "^2.26.14",
+		"browsersync-ssi": "^0.2.4",
+		"del": "^6.0.0",
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-file-include": "^2.2.2",
+		"gulp-group-css-media-queries": "^1.2.2",
+		"gulp-imagemin": "^7.1.0",
+		"gulp-newer": "^1.4.0",
+		"gulp-pug": "^4.0.1",
+		"gulp-rename": "^2.0.0",
+		"gulp-rsync": "0.0.9",
+		"gulp-sass": "^4.1.0",
+		"gulp-ttf2woff": "^1.1.1",
+		"gulp-ttf2woff2": "^3.0.0",
+		"webpack-stream": "^6.1.1"
+	},
+	"dependencies": {
+		"animate.scss": "0.0.6",
+		"inputmask": "^5.0.5",
+		"loading-attribute-polyfill": "^2.0.0-rc.1",
+		"normalize.scss": "^0.1.0",
+		"vue": "^2.6.12",
+		"wowjs": "^1.1.3"
+	}
+}

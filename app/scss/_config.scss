@@ -1,0 +1,306 @@
+// USER VARIABLES SECTION
+$accent: #5BD2F3; // Accent Color
+$accentSecond: #E7552B; // Accent Second Color
+$accentThird: #F0A21A; // Accent Third Color
+$mainColor:#1B556F; // Body Background Color
+$fontSize: 10px; // Body Font Size
+$textColor: #eaf2f5; // Text Color
+$textSecondColor: #b0b1b1; // Text Color
+$lineHeight: 1.65; // Document Line Height
+$userFont: Roboto,
+sans-serif; // User Font Family
+$systemFont: -apple-system,
+BlinkMacSystemFont,
+Arial,
+sans-serif; // System Font Family
+$maxWidth: 1920;
+$maxWidthContainer:1300;
+
+// IMPORT SECTION
+
+
+// Bootstrap Reboot collection
+// Bootstrap Breakpoints mixin
+// @import 'node_modules/bootstrap/scss/bootstrap-grid.scss' ;// Optional Bootstrap Grid
+// @import 'node_modules/bootstrap/scss/utilities/_sizing.scss' ;// Optional Bootstrap Utilites
+
+// FONTS LOAD SECTION
+@include font('Roboto', normal, 400, '../fonts/roboto-regular-webfont.woff2');
+@include font('Roboto', italic, 400, '../fonts/roboto-italic-webfont.woff2');
+@include font('Roboto', normal, 700, '../fonts/roboto-bold-webfont.woff2');
+@include font('Roboto', italic, 700, '../fonts/roboto-bolditalic-webfont.woff2');
+
+// GENERAL DOCUMENT STYLES
+::placeholder {
+	color: $textColor;
+}
+
+::selection {
+	background-color: $accent;
+	color: #fff;
+}
+
+input,
+textarea {
+	outline: none;
+
+	&:focus:required:invalid {
+		border-color: red;
+	}
+
+	&:required:valid {
+		border-color: green;
+	}
+
+	&::-webkit-input-placeholder {
+		@include _transition(all, .2s);
+
+		transform-origin: 100% 0;
+	}
+
+	&::-moz-placeholder {
+
+		transform-origin: 100% 0;
+	}
+
+	&:-ms-input-placeholder {
+		@include _transition(all, .2s);
+		transform-origin: 100% 0;
+	}
+
+	&::-ms-input-placeholder {
+		@include _transition(all, .2s);
+		transform-origin: 100% 0;
+	}
+
+	&::placeholder {
+		@include _transition(all, .2s);
+		transform-origin: 100% 0;
+	}
+
+	&:active,
+	&:focus {
+		&::-webkit-input-placeholder {
+			opacity: 0;
+			transform: scaleX(0);
+			-webkit-transform: scaleX(0);
+			-moz-transform: scaleX(0);
+			-ms-transform: scaleX(0);
+			-o-transform: scaleX(0);
+		}
+
+		&::-moz-placeholder {
+			opacity: 0;
+			transform: scaleX(0);
+			-webkit-transform: scaleX(0);
+			-moz-transform: scaleX(0);
+			-ms-transform: scaleX(0);
+			-o-transform: scaleX(0);
+		}
+
+		&:-ms-input-placeholder {
+			opacity: 0;
+			transform: scaleX(0);
+			-webkit-transform: scaleX(0);
+			-moz-transform: scaleX(0);
+			-ms-transform: scaleX(0);
+			-o-transform: scaleX(0);
+		}
+
+		&::-ms-input-placeholder {
+			opacity: 0;
+			transform: scaleX(0);
+			-webkit-transform: scaleX(0);
+			-moz-transform: scaleX(0);
+			-ms-transform: scaleX(0);
+			-o-transform: scaleX(0);
+		}
+
+		&::placeholder {
+			opacity: 0;
+			transform: scaleX(0);
+			-webkit-transform: scaleX(0);
+			-moz-transform: scaleX(0);
+			-ms-transform: scaleX(0);
+			-o-transform: scaleX(0);
+		}
+	}
+}
+
+textarea {
+	resize: none;
+}
+
+label {
+	cursor: pointer;
+}
+
+input[type=button],
+input[type=submit],
+button {
+	@extend .p;
+	border: none;
+	cursor: pointer;
+	// visibility: hidden;
+	// position: absolute;
+	// height: 0;
+	// width: 0;
+	// font-size: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+html {
+	font-size: $fontSize;
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	-ms-overflow-style: scrollbar;
+	-webkit-tap-highlight-color: transparent;
+	scroll-behavior: smooth;
+	text-rendering: optimizeLegibility;
+	height: 100%;
+
+	@media only screen and(max-width:1024px) {
+		&::-webkit-scrollbar {
+			display: none;
+			cursor: pointer;
+			width: 0rem;
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			display: none;
+			width: 0;
+			background: transparent;
+			border-radius: .5rem;
+			-webkit-border-radius: .5rem;
+			-moz-border-radius: .5rem;
+			-ms-border-radius: .5rem;
+			-o-border-radius: .5rem;
+		}
+
+		&::-webkit-scrollbar-thumb:hover {
+			background: transparent;
+		}
+	}
+}
+
+@-ms-viewport {
+	width: device-width;
+}
+
+body {
+	font-family: $userFont;
+	font-size: $fontSize;
+	line-height: $lineHeight;
+	background: $mainColor;
+	color: $textColor;
+	min-width: 320px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	position: relative;
+	overflow-x: hidden;
+
+	&.__fixed {
+		width: 100%;
+		overflow: hidden;
+	}
+}
+
+
+
+footer,
+header,
+section,
+.section {
+	width: 100%;
+	display: flex;
+}
+
+.t,
+h {
+	@for $i from 1 through 6 {
+		&#{$i} {
+			margin: 0;
+			padding: 0;
+			line-height: 134%;
+			position: relative;
+			z-index: 1;
+			font-weight: normal;
+		}
+	}
+
+	&1 {
+		@include adaptive(font-size, 35, 22, 0);
+	}
+
+	&2 {
+		@include adaptive(font-size, 30, 20, 0);
+	}
+
+	&3 {
+		@include adaptive(font-size, 25, 15, 0);
+	}
+
+	&4 {
+		@include adaptive(font-size, 23, 17, 0);
+	}
+
+	&5 {
+		@include adaptive(font-size, 20, 15, 0);
+	}
+
+	&6 {
+		@include adaptive(font-size, 18, 14, 0);
+	}
+}
+
+p,
+a,
+li,
+.p,
+label {
+
+	line-height: 1.35;
+	@include adaptive(font-size, 18, 14, 0);
+}
+
+
+@media only screen and (max-width : 900px) and (orientation:landscape) {}
+
+@media only screen and (max-width : 1920px) {}
+
+@media only screen and (max-width : 1680px) {}
+
+@media only screen and (max-width : 1369px) {}
+
+@media only screen and (max-width : 1440px) {}
+
+@media only screen and (max-width : 1280px) {}
+
+@media only screen and (max-width : 1024px) {}
+
+@media only screen and (max-width : 800px) {}
+
+@media only screen and (max-width : 768px) {}
+
+@media only screen and (max-width : 600px) {}
+
+@media only screen and (max-width : 533px) {}
+
+@media only screen and (max-width : 360px) {}
+
+@media only screen and (max-width : 320px) {}
