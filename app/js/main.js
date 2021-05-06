@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  
   if (showModals.length > 0) {
     showModals.forEach((showModal) => {
       showModal.addEventListener("click", (e) => {
