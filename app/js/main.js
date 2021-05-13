@@ -32,24 +32,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const accordionItemTitles = document.querySelectorAll(".accordion-item");
   const customSelect = document.querySelectorAll(".custom-select-wrapper");
   const btns = document.querySelectorAll(".btn");
-
+  const breadcrumb = document.querySelector(".breadcrumb");
   // variable end
+
+  if (breadcrumb) {
+    let lastBreadcrumb = breadcrumb.lastElementChild;
+
+    if (lastBreadcrumb) {
+      lastBreadcrumb.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+    }
+  }
   if (btns.length > 0) {
     btns.forEach((btn) => {
-      btn.addEventListener("mouseover", (e) => {
+      btn.addEventListener("mouseenter", (e) => {
+        const _this = e.currentTarget;
+        let targetCoords = e.currentTarget.getBoundingClientRect();
+        const span = document.createElement("span");
+        _this.appendChild(span);
+        let yCoord = e.clientY - targetCoords.top;
+        let xCoord = e.clientX - targetCoords.left;
+        span.style.top = `${yCoord}px`;
+        span.style.left = `${xCoord}px`;
+        setTimeout(() => {
+          _this.removeChild(span);
+        }, 1500);
+      });
+      btn.addEventListener("click", (e) => {
         const _this = e.currentTarget;
         const span = document.createElement("span");
-        // _this.appendChild(span);
-        // span.style.bottom = `-50%`;
-        // span.style.left = `-50%`;
-        // console.log(e);
-        // setTimeout(() => {
-        //   _this.removeChild(span);
-        // }, 300);
+        let targetCoords = e.currentTarget.getBoundingClientRect();
+        _this.appendChild(span);
+        let yCoord = e.clientY - targetCoords.top;
+        let xCoord = e.clientX - targetCoords.left;
+        span.style.top = `${yCoord}px`;
+        span.style.left = `${xCoord}px`;
+        setTimeout(() => {
+          _this.removeChild(span);
+        }, 1500);
       });
     });
   }
-  
+
   if (showModals.length > 0) {
     showModals.forEach((showModal) => {
       showModal.addEventListener("click", (e) => {
@@ -62,9 +87,23 @@ document.addEventListener("DOMContentLoaded", () => {
           let currentSrc = showModal.getAttribute("src");
           let currentImage = document.createElement("img");
           const currentModal = document.getElementById("modal__photo");
-          const currentModalContent = currentModal.querySelector(
-            ".modal__content"
-          );
+          const currentModalContent =
+            currentModal.querySelector(".modal__content");
+          const checkImg = currentModalContent.querySelector("img");
+          currentImage.setAttribute("src", currentSrc);
+
+          if (checkImg) {
+            checkImg.replaceWith(currentImage);
+          } else {
+            currentModalContent.appendChild(currentImage);
+          }
+          modalOpen(currentModal);
+        } else if (showModal.hasAttribute("data-src")) {
+          let currentSrc = showModal.getAttribute("data-src");
+          let currentImage = document.createElement("img");
+          const currentModal = document.getElementById("modal__photo");
+          const currentModalContent =
+            currentModal.querySelector(".modal__content");
           const checkImg = currentModalContent.querySelector("img");
           currentImage.setAttribute("src", currentSrc);
 

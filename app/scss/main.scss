@@ -1,8 +1,9 @@
-@import 'vendor/animate';
-@import 'vendor/normalize';
-@import '_mixin';
-@import '_default';
-@import '_config';
+@import './vendor/animate';
+@import './vendor/normalize';
+@import './_mixin';
+@import './_default';
+@import './keyframes';
+@import './_config';
 
 .wrapper {
   max-width: 1650px;
@@ -839,6 +840,19 @@ textarea {
 
   }
 
+  span {
+    position: absolute;
+    @include _transition(all, .35s);
+    display: block;
+    background: rgba(255, 255, 255, .35);
+    @include _borderRadius(50%);
+    animation-name: fullSize;
+    animation-timing-function: linear;
+    animation-duration: 1.5s;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
   &::before {
     background: $accentThird;
     z-index: -1;
@@ -862,26 +876,13 @@ textarea {
 
     &::after {
 
-      width: 400px;
+      // width: 400px;
       // height: 400px;
-      opacity: 1;
+      // opacity: 1;
     }
   }
-
-
 }
 
-@keyframes fullSize {
-  0% {
-    width: 0;
-    height: 0;
-  }
-
-  100% {
-    width: 400px;
-    height: 400px;
-  }
-}
 
 .accordion {
   &-item {

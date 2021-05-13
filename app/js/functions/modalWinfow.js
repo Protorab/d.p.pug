@@ -1,5 +1,5 @@
 let unlock = true;
-const timeout = 800;
+const timeout = 200;
 const lockPadding = document.querySelectorAll(".lock-padding");
 const body = document.querySelector("body");
 
