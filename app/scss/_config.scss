@@ -42,14 +42,14 @@ $maxWidthContainer:1300;
 
 input,
 textarea {
-	outline: none;
+	// outline: none;
 
 	&:focus:required:invalid {
-		border-color: red;
+		border-color: rgb(85, 0, 0);
 	}
 
 	&:required:valid {
-		border-color: green;
+		border-color: rgb(14, 75, 14);
 	}
 
 	&::-webkit-input-placeholder {

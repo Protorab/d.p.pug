@@ -1,4 +1,4 @@
-.custom-select-wrapper.header__select
+.custom-select-wrapper.header__select(aria-label="селектор")
   .custom-select
     select.custom-select-input(required='' name='select')
       option
@@ -6,6 +6,6 @@
       span Выбрать
       .triangle
     .custom-options
-      span.custom-option.selected(data-value='def') Выбрать
-      span.custom-option(data-value='Var-1')  Var-1 
-      span.custom-option(data-value='Var-2') Var-2
+      span.custom-option.selected(data-value='def',tab-index="0") Выбрать
+      span.custom-option(data-value='Var-1',tab-index="0")  Var-1 
+      span.custom-option(data-value='Var-2',tab-index="0") Var-2

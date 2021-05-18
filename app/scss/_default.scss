@@ -79,4 +79,6 @@
 
 *:focus {
   outline: 0;
+  opacity: 0.5;
+  @include _transition(all, .5s);
 }
