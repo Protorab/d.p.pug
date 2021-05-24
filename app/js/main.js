@@ -4,13 +4,22 @@ import loadingAttributePolyfill from "loading-attribute-polyfill";
 import classRemove from "./functions/classRemove";
 // attrClear function
 import attrClear from "./functions/attrClear";
-
+// functions modalWindow
 import {
   modalOpen,
   modalClose,
   bodyLock,
   bodyUnlock,
-} from "./functions/modalWinfow";
+} from "./functions/modalWindow";
+// functions btns
+import btnsFunc from "./functions/btns";
+// functions lazyLoading
+import observer from "./functions/lazyLoading";
+// functions lazyLoading
+import customSelectFunc from "./functions/customSelect";
+// functions tabsChange
+import tabsChange from "./functions/tabsChange";
+import collapsibleFunc from "./functions/collapsible";
 // const WOW = require("wowjs");
 // window.wow = new wow.WOW();
 // window.wow.init();
@@ -21,20 +30,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuItem = document.querySelectorAll(".menu-link");
   const phoneInput = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
-  const tabs = document.querySelectorAll(".tab");
-  const tabsContent = document.querySelectorAll(".tab__content");
+
   const phoneLink = document.querySelectorAll("a[href^='tel']");
   const burgerMenu = document.querySelector(".burger__menu");
   const menu = document.querySelector(".menu-nav");
   const showModals = document.querySelectorAll(".show__modal");
   const modalCloseIcons = document.querySelectorAll(".close__modal");
   const body = document.querySelector("body");
-  const accordionItemTitles = document.querySelectorAll(".accordion-item");
-  const customSelect = document.querySelectorAll(".custom-select-wrapper");
-  const btns = document.querySelectorAll(".btn");
+
   const breadcrumb = document.querySelector(".breadcrumb");
   // variable end
-
+  btnsFunc();
+  customSelectFunc();
+  collapsibleFunc();
+  tabsChange();
   if (breadcrumb) {
     let lastBreadcrumb = breadcrumb.lastElementChild;
 
@@ -43,36 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
       });
     }
-  }
-  if (btns.length > 0) {
-    btns.forEach((btn) => {
-      btn.addEventListener("mouseenter", (e) => {
-        const _this = e.currentTarget;
-        let targetCoords = e.currentTarget.getBoundingClientRect();
-        const span = document.createElement("span");
-        _this.appendChild(span);
-        let yCoord = e.clientY - targetCoords.top;
-        let xCoord = e.clientX - targetCoords.left;
-        span.style.top = `${yCoord}px`;
-        span.style.left = `${xCoord}px`;
-        setTimeout(() => {
-          _this.removeChild(span);
-        }, 1500);
-      });
-      btn.addEventListener("click", (e) => {
-        const _this = e.currentTarget;
-        const span = document.createElement("span");
-        let targetCoords = e.currentTarget.getBoundingClientRect();
-        _this.appendChild(span);
-        let yCoord = e.clientY - targetCoords.top;
-        let xCoord = e.clientX - targetCoords.left;
-        span.style.top = `${yCoord}px`;
-        span.style.left = `${xCoord}px`;
-        setTimeout(() => {
-          _this.removeChild(span);
-        }, 1500);
-      });
-    });
   }
 
   if (showModals.length > 0) {
@@ -178,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
     images.forEach((img) => {
       attrClear(img, "title", 1);
       attrClear(img, "alt", 1);
+      if (img.hasAttribute("data_src")) {
+        observer.observe(img);
+      }
     });
   }
 
@@ -202,130 +184,4 @@ document.addEventListener("DOMContentLoaded", () => {
     classRemove(".burger__menu.--clicked", "--clicked");
     classRemove(".menu-nav.--show", "--show");
   });
-
-  for (let i = 0; i < accordionItemTitles.length; i++) {
-    accordionItemTitles[i].addEventListener("click", function (event) {
-      event.preventDefault();
-      event.target.classList.toggle("active");
-      let accordionItemContent = event.target.nextElementSibling;
-
-      if (!accordionItemContent.classList.contains("active")) {
-        accordionItemContent.classList.add("active");
-        accordionItemContent.style.height = "auto";
-        let height = accordionItemContent.clientHeight + "px";
-        accordionItemContent.style.height = "0px";
-
-        setTimeout(function () {
-          accordionItemContent.style.height = height;
-        }, 0);
-      } else {
-        accordionItemContent.style.height = "0px";
-
-        accordionItemContent.addEventListener(
-          "transitionend",
-          function () {
-            accordionItemContent.classList.remove("active");
-          },
-          {
-            once: true,
-          }
-        );
-      }
-    });
-  }
-
-  // custom Select
-  if (customSelect.length > 0) {
-    customSelect.forEach((customSelect) => {
-      customSelect.addEventListener("click", function () {
-        this.querySelector(".custom-select").classList.toggle("open");
-      });
-      for (const customOption of document.querySelectorAll(".custom-option")) {
-        customOption.addEventListener("click", function () {
-          if (!this.classList.contains("selected")) {
-            let customInput = this.parentNode.parentNode.querySelector(
-              ".custom-select-input"
-            );
-            let inputOption = customInput.querySelector("option");
-            this.parentNode
-              .querySelector(".custom-option.selected")
-              .classList.remove("selected");
-            this.classList.add("selected");
-            this.closest(".custom-select").querySelector(
-              ".custom-select__trigger span"
-            ).textContent = this.textContent;
-            this.dataset.value !== "def"
-              ? (inputOption.setAttribute("value", this.textContent),
-                inputOption.setAttribute("selected", true),
-                (inputOption.innerHTML = this.textContent))
-              : (inputOption.setAttribute("value", ""),
-                inputOption.removeAttribute("selected"),
-                (inputOption.innerHTML = ""));
-          }
-        });
-      }
-      window.addEventListener("click", function (e) {
-        const select = document.querySelectorAll(".custom-select");
-        select.forEach((item) => {
-          if (!item.contains(e.target)) {
-            item.classList.remove("open");
-          }
-        });
-      });
-    });
-  }
-
-  // lazy loading
-  const options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.1,
-  };
-
-  const handleImg = (myImg, observer) => {
-    myImg.forEach((myImgSingleImg) => {
-      // console.log(myImgSingleImg.intersectionRatio);
-      if (myImgSingleImg.intersectionRatio > 0) {
-        loadingImage(myImgSingleImg.target);
-      }
-    });
-  };
-
-  const loadingImage = (image) => {
-    image.src = image.getAttribute("data_src");
-  };
-  const observer = new IntersectionObserver(handleImg, options);
-  images.forEach((img) => {
-    if (img.hasAttribute("data_src")) {
-      observer.observe(img);
-    }
-  });
-
-  // tabs
-  if (tabs.length > 0) {
-    for (let i = 0; i < tabs.length; i++) {
-      const tab = tabs[i];
-      tab.setAttribute("data-index", i);
-
-      tab.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.currentTarget.parentNode
-          .querySelector(".tab.--active")
-          .classList.remove("--active");
-        e.currentTarget.classList.add("--active");
-        for (let j = 0; j < tabsContent.length; j++) {
-          const tabContent = tabsContent[j];
-          tabContent.setAttribute("data-index", j);
-          tabContent.classList.remove("--active");
-        }
-        let currentTab = document.querySelector(
-          `.tab__content[data-index='${i}']`
-        );
-        currentTab.classList.add("--active");
-        // popularSlider.forEach((slider) => {
-        //   slider.update();
-        // });
-      });
-    }
-  }
 });
