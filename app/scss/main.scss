@@ -407,7 +407,7 @@
 
 .header {
   @include _transition(all, .5s);
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 10;
   background: $mainColor;
@@ -435,6 +435,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-top: 105px;
 }
 
 .modal {
@@ -643,7 +644,7 @@
 
   @media only screen and (min-width : 800px) {
     width: 100%;
-    flex: 1 1 calc((100% / 2) - 20px);
+    @include coll(2, 20px);
     margin: get-vw(10px);
 
   }
@@ -954,6 +955,8 @@ textarea {
   }
 }
 
+
+
 .card__list {
   list-style: none;
 
@@ -967,8 +970,8 @@ textarea {
 
   &-item {
     // margin: get-vw(10px);
-    flex: 1 1 calc((100% / 2) - 20px);
+    @include coll(12, 20px);
     margin: get-vw(10px);
-    height: get-vw(250px);
+    height: get-vw(50px);
   }
 }

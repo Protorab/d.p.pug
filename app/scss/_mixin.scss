@@ -65,6 +65,10 @@
   }
 }
 
+@mixin coll($collCount, $collGap) {
+  flex: 1 1 calc((100% / #{$collCount}) - #{$collGap});
+}
+
 @function get-vw($property) {
   $vw-context: $maxWidth * 0.01 * 1px;
   @return $property / $vw-context * 1vw;
