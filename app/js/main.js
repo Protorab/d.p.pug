@@ -21,7 +21,11 @@ import observer from "./functions/lazyLoading";
 import customSelectFunc from "./functions/customSelect";
 // functions tabsChange
 import tabsChange from "./functions/tabsChange";
+// collapsibleFunc
 import collapsibleFunc from "./functions/collapsible";
+// blink
+import blink from "./functions/blink";
+
 // const WOW = require("wowjs");
 // window.wow = new wow.WOW();
 // window.wow.init();

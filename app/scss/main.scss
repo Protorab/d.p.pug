@@ -624,9 +624,14 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin: -20px;
+  margin: -10px;
   flex-wrap: wrap;
   width: 100%;
+
+  @media only screen and (min-width : 800px) {
+    margin: get-vw(-10px);
+  }
+
 }
 
 .coll {
@@ -634,10 +639,12 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 100%;
+  margin: 10px;
 
   @media only screen and (min-width : 800px) {
     width: 100%;
-    flex: 1 1 45%;
+    flex: 1 1 calc((100% / 2) - 20px);
+    margin: get-vw(10px);
 
   }
 
@@ -885,7 +892,7 @@ textarea {
     @include _borderRadius(50%);
     animation-name: fullSize;
     animation-timing-function: linear;
-    animation-duration: 1.5s;
+    animation-duration: .5s;
     transform: translate(-50%, -50%);
     z-index: -1;
   }
@@ -954,12 +961,14 @@ textarea {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  // margin: get-vw(-10px);
+  margin: get-vw(-10px);
   flex-wrap: wrap;
-  gap: 20px;
+  // gap: get-vw(20px);
 
   &-item {
     // margin: get-vw(10px);
-    flex: 1 1 calc((100% / 2) - 20px)
+    flex: 1 1 calc((100% / 2) - 20px);
+    margin: get-vw(10px);
+    height: get-vw(250px);
   }
 }

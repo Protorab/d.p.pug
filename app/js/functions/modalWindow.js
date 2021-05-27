@@ -55,7 +55,7 @@ export const bodyUnlock = () => {
       });
     }
     body.style.paddingRight = "0px";
-    body.classList.remove(".--fixed");
+    body.classList.remove("--fixed");
   }, timeout);
   unlock = false;
   setTimeout(() => {

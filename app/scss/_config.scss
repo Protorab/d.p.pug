@@ -214,7 +214,7 @@ body {
 	position: relative;
 	overflow-x: hidden;
 
-	&.__fixed {
+	&.--fixed {
 		width: 100%;
 		overflow: hidden;
 	}
