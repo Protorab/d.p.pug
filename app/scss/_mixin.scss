@@ -64,3 +64,9 @@
     #{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
   }
 }
+
+@function get-vw($property) {
+  $vw-context: $maxWidth * 0.01 * 1px;
+  @return $property / $vw-context * 1vw;
+  @return $property;
+}

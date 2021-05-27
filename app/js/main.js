@@ -11,6 +11,8 @@ import {
   bodyLock,
   bodyUnlock,
 } from "./functions/modalWindow";
+// functions modalWindow init
+import modalWindowInit from "./functions/modalWindowInit";
 // functions btns
 import btnsFunc from "./functions/btns";
 // functions lazyLoading
@@ -30,16 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuItem = document.querySelectorAll(".menu-link");
   const phoneInput = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
-
   const phoneLink = document.querySelectorAll("a[href^='tel']");
   const burgerMenu = document.querySelector(".burger__menu");
   const menu = document.querySelector(".menu-nav");
-  const showModals = document.querySelectorAll(".show__modal");
   const modalCloseIcons = document.querySelectorAll(".close__modal");
   const body = document.querySelector("body");
-
   const breadcrumb = document.querySelector(".breadcrumb");
   // variable end
+  modalWindowInit();
   btnsFunc();
   customSelectFunc();
   collapsibleFunc();
@@ -52,49 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
       });
     }
-  }
-
-  if (showModals.length > 0) {
-    showModals.forEach((showModal) => {
-      showModal.addEventListener("click", (e) => {
-        if (showModal.hasAttribute("href")) {
-          const modalName = showModal.getAttribute("href").replace("#", "");
-          const currentModal = document.getElementById(modalName);
-          modalOpen(currentModal);
-          e.preventDefault();
-        } else if (showModal.hasAttribute("src")) {
-          let currentSrc = showModal.getAttribute("src");
-          let currentImage = document.createElement("img");
-          const currentModal = document.getElementById("modal__photo");
-          const currentModalContent =
-            currentModal.querySelector(".modal__content");
-          const checkImg = currentModalContent.querySelector("img");
-          currentImage.setAttribute("src", currentSrc);
-
-          if (checkImg) {
-            checkImg.replaceWith(currentImage);
-          } else {
-            currentModalContent.appendChild(currentImage);
-          }
-          modalOpen(currentModal);
-        } else if (showModal.hasAttribute("data-src")) {
-          let currentSrc = showModal.getAttribute("data-src");
-          let currentImage = document.createElement("img");
-          const currentModal = document.getElementById("modal__photo");
-          const currentModalContent =
-            currentModal.querySelector(".modal__content");
-          const checkImg = currentModalContent.querySelector("img");
-          currentImage.setAttribute("src", currentSrc);
-
-          if (checkImg) {
-            checkImg.replaceWith(currentImage);
-          } else {
-            currentModalContent.appendChild(currentImage);
-          }
-          modalOpen(currentModal);
-        }
-      });
-    });
   }
 
   if (modalCloseIcons.length > 0) {

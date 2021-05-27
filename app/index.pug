@@ -4,5 +4,21 @@ html(lang="ru")
   body
     include includes/main/_header.pug
     main.main
+      section.section.section__top
+        .wrapper
+          ul.card__list 
+            li.card__list-item 
+              include ./includes/mixins/img-fullW-center
+              +img("img/img_1.jpg","title","show__modal")
+            li.card__list-item 
+              include ./includes/mixins/img-fullW-center
+              +img("img/img_1.jpg","title","show__modal")
+            li.card__list-item 
+              include ./includes/mixins/img-fullW-center
+              +img("img/img_1.jpg","title","show__modal")
+            li.card__list-item 
+              include ./includes/mixins/img-fullW-center
+              +img("img/img_1.jpg","title","show__modal")
       .wrapper
+
     include includes/main/_footer.pug
