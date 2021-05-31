@@ -1,3 +1,4 @@
+@import '../../node_modules/swiper/swiper.scss';
 @import './vendor/animate';
 @import './vendor/normalize';
 @import './_mixin';
@@ -952,26 +953,5 @@ textarea {
     &-wrapper {
       padding: 18px 0;
     }
-  }
-}
-
-
-
-.card__list {
-  list-style: none;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin: get-vw(-10px);
-  flex-wrap: wrap;
-  // gap: get-vw(20px);
-
-  &-item {
-    // margin: get-vw(10px);
-    @include coll(12, 20px);
-    margin: get-vw(10px);
-    height: get-vw(50px);
   }
 }

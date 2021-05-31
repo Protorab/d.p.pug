@@ -1,5 +1,5 @@
+// inputmask
 import inputmask from "inputmask";
-import loadingAttributePolyfill from "loading-attribute-polyfill";
 //  class removable function
 import classRemove from "./functions/classRemove";
 // attrClear function

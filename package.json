@@ -29,11 +29,9 @@
 		"webpack-stream": "^6.1.1"
 	},
 	"dependencies": {
-		"animate.scss": "0.0.6",
+		"@splidejs/splide": "^2.4.21",
 		"inputmask": "^5.0.5",
-		"loading-attribute-polyfill": "^2.0.0-rc.1",
-		"normalize.scss": "^0.1.0",
-		"vue": "^2.6.12",
+		"swiper": "^6.7.0",
 		"wowjs": "^1.1.3"
 	}
 }

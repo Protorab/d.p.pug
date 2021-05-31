@@ -62,6 +62,10 @@
 
   @else {
     #{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+
+    @media (min-width: 2560px) {
+      #{$property}: $startSize+px;
+    }
   }
 }
 
