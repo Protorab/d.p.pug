@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.querySelector("body");
   const breadcrumb = document.querySelector(".breadcrumb");
   // variable end
+
   modalWindowInit();
   btnsFunc();
   customSelectFunc();

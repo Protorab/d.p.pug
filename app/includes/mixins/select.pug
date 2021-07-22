@@ -1,0 +1,17 @@
+mixin select(addClass,title,options)
+  div(aria-label="селектор",class=`custom-select-wrapper ${addClass}-select-wrapper`)
+    div(class=`custom-select ${addClass}-select`)
+      select(class=`custom-select-input ${addClass}-select-input`,required='' name='select')
+        option
+      div(class=`custom-select__trigger ${addClass}-select__trigger`)
+        span Выбрать
+        .triangle
+      div(class=`custom-options ${addClass}-options`)
+        each option, index in options
+          - var count = index+1
+          - var itemTitle = option[0]
+          if count==1
+            span(class=`custom-option ${addClass}-option selected`,data-value='def',tab-index="0")!=title
+          else
+            span.custom-option(data-value=`${itemTitle}`,tab-index="0")!=itemTitle 
+          
