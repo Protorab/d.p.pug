@@ -1,17 +1,24 @@
-mixin select(addClass,title,options)
+mixin select(addID,addClass,title,checkArrow,options,selectName)
   div(aria-label="селектор",class=`custom-select-wrapper ${addClass}-select-wrapper`)
     div(class=`custom-select ${addClass}-select`)
-      select(class=`custom-select-input ${addClass}-select-input`,required='' name='select')
-        option
+      select(
+        id=`${addID}`,
+        class=`custom-select-input ${addClass}-select-input`,
+        required='',
+        name=`${selectName}`)
+        option(label='variant')
       div(class=`custom-select__trigger ${addClass}-select__trigger`)
-        span Выбрать
-        .triangle
+        span!=title
+        if checkArrow==triangle
+          span(class=`triangle ${addClass}-triangle`)
+        else 
+          span(class=`arrow ${addClass}-arrow`)
       div(class=`custom-options ${addClass}-options`)
         each option, index in options
           - var count = index+1
           - var itemTitle = option[0]
           if count==1
-            span(class=`custom-option ${addClass}-option selected`,data-value='def',tab-index="0")!=title
+            span(class=`custom-option ${addClass}-option selected`,data-value='def')!=title
           else
-            span.custom-option(data-value=`${itemTitle}`,tab-index="0")!=itemTitle 
+            span(class=`custom-option ${addClass}-option`,data-value=`${itemTitle}`)!=itemTitle 
           

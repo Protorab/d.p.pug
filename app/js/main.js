@@ -24,8 +24,9 @@ import tabsChange from "./functions/tabsChange";
 // collapsibleFunc
 import collapsibleFunc from "./functions/collapsible";
 // blink
-import blink from "./functions/blink";
-
+// import blink from "./functions/blink";
+// lazyBg function
+import lazyBg from "./functions/lazyBg";
 // const WOW = require("wowjs");
 // window.wow = new wow.WOW();
 // window.wow.init();
@@ -44,11 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const breadcrumb = document.querySelector(".breadcrumb");
   // variable end
 
+  // function call start
+  lazyBg();
   modalWindowInit();
   btnsFunc();
   customSelectFunc();
   collapsibleFunc();
   tabsChange();
+  // function call end
   if (breadcrumb) {
     let lastBreadcrumb = breadcrumb.lastElementChild;
 
@@ -58,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-
   if (modalCloseIcons.length > 0) {
     modalCloseIcons.forEach((icon) => {
       icon.addEventListener("click", (e) => {
@@ -67,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-
   // call close popup func on ESC keypress
   document.addEventListener("keydown", function (e) {
     if (e.which === 27) {

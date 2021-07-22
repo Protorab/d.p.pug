@@ -60,6 +60,18 @@
     }
   }
 
+  @else if $type==3 {
+    #{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+
+    @media (min-width:1152px) {
+      #{$property}:calc((#{$startSize} / #{$vw-context}) * 1vw);
+    }
+
+    @media (min-width: 2560px) {
+      #{$property}: $startSize+px;
+    }
+  }
+
   @else {
     #{$property}: calc(#{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
 
