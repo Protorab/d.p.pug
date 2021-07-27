@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalCloseIcons = document.querySelectorAll(".close__modal");
   const body = document.querySelector("body");
   const breadcrumb = document.querySelector(".breadcrumb");
+
   // variable end
 
   // function call start
@@ -53,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   collapsibleFunc();
   tabsChange();
   // function call end
+
   if (breadcrumb) {
     let lastBreadcrumb = breadcrumb.lastElementChild;
 
