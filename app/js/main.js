@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     images.forEach((img) => {
       attrClear(img, "title", 1);
       attrClear(img, "alt", 1);
-      if (img.hasAttribute("data_src")) {
+      if (img.hasAttribute("data-lazy")) {
         observer.observe(img);
       }
     });

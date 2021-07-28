@@ -15,7 +15,7 @@ const handleImg = (myImg, observer) => {
 };
 
 const loadingImage = (image) => {
-  image.src = image.getAttribute("data_src");
+  image.src = image.getAttribute("data-lazy");
 };
 const observer = new IntersectionObserver(handleImg, options);
 export default observer;
