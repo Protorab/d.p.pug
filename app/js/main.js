@@ -30,7 +30,7 @@ import lazyBg from "./functions/lazyBg";
 // const WOW = require("wowjs");
 // window.wow = new wow.WOW();
 // window.wow.init();
-// import module example (npm i -D jquery)
+// import ytPlayer from "./functions/youtubePlayer";
 
 document.addEventListener("DOMContentLoaded", () => {
   // variable start
@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // variable end
 
   // function call start
+  // ytPlayer();
   lazyBg();
   modalWindowInit();
   btnsFunc();
