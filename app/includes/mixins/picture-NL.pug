@@ -1,11 +1,16 @@
 mixin picture(imgPath,title,addClass,showModal)
-  picture(class=`${addClass ? `${addClass}-picture` : ""}`)
+  picture(
+    itemscope,
+    itemtype='http://schema.org/ImageObject',
+    class=`${addClass ? `${addClass}-picture` : ""}`)
     source(
-      srcset!=`${imgPath}`)
+      srcset!=`${imgPath}`,
+      itemprop='contentUrl')
     img.img-fullW-center(
       src!=`${imgPath}`, 
       alt!=`${title}`,
       title!=`${title}`,
       draggable="false",
       loading="lazy",
-      class!=`${addClass ? `${addClass}-image` : ""} ${showModal ? showModal : ""} `)
+      class!=`${addClass ? `${addClass}-image` : ""} ${showModal ? showModal : ""} `,
+      itemprop='contentUrl')
