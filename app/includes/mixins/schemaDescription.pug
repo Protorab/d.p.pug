@@ -1,0 +1,19 @@
+mixin schemaDescription(title,photo,description,shortDescription)
+  div.schema-org(
+    aria-hidden="true",
+    itemscope,
+    itemtype='https://schema.org/Hotel')
+    h6.schema-org__title
+      span(itemprop='name')!=title
+    img.schema-org__logo(
+      itemprop='logo',
+      src='./img/favicon.png' 
+      alt=`${title} логотип`,
+      title=`${title}`)
+    span.schema-org__text(
+      itemprop='description')!=description
+    img.schema-org__photo(
+      itemprop='photo',
+      src='../media/hotel_front.png' 
+      alt=`${shortDescription}`,
+      title=`${title}`)

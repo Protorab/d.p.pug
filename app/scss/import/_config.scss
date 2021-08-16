@@ -123,7 +123,17 @@ $maxWidthContainer: 1300;
     width: calc(100% - 30px);
   }
 }
-
+.schema-org {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  z-index: -9999;
+  left: 0;
+  top: 0;
+}
 .img {
   // .img-full
   &-fullW {

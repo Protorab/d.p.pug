@@ -1,7 +1,6 @@
 mixin img(imgPath,title,addClass,showModal)
   img.img-fullW-center(
-    src="img/preloader.gif",
-    data-lazy-src!=`${imgPath}`, 
+    src!=`${imgPath}`, 
     alt!=`${title}`,
     title!=`${title}`,
     draggable="false",

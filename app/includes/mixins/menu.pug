@@ -1,0 +1,48 @@
+mixin menu(menuItems)
+  //menu-nav start
+  nav.menu-nav(
+      itemscope, 
+      itemtype="http://schema.org/SiteNavigationElement")
+
+    //menu start
+    ul.menu
+      each menuItem, idx in menuItems
+        - var count = idx+1
+        - var title = menuItem[0]
+        - var link = menuItem[1]
+        - var menuDropdownItems = menuItem[2]
+        //menu__link start
+        li.menu__item(
+          itemprop="name")
+
+          //menu__link start
+          a.menu__link(
+            itemprop="url",
+            href=`${link}`)!=title
+          //menu__link end
+
+          if menuDropdownItems>0
+
+            //menu__dropdown start
+            ul.menu__dropdown
+              each menuDropdownItem, idxDrop in menuDropdownItems
+                - var count = idx+1
+                - var dropTitle = menuDropdownItem[0]
+                - var dropLink = menuDropdownItem[1]
+
+                //menu__dropdown-item start
+                li.menu__dropdown-item
+
+                  //menu__dropdown-link start
+                  a.menu__dropdown-link(href=`${dropLink}`)=dropTitle
+                  //menu__dropdown-link end
+
+                //menu__dropdown-item end
+
+            //menu__dropdown end
+
+        //menu__item end
+
+      //menu end
+      
+    //menu-nav end

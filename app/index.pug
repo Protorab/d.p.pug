@@ -1,8 +1,34 @@
 doctype html
 html(lang="ru")
-  include includes/main/_head.pug
+
+  //head start
+  include ./includes/mixins/head
+  +head("Главная")
+  //head end
+
   body
-    include includes/main/_header.pug
-    main.main
+  
+    //schemaDescription start
+    include ./includes/mixins/schemaDescription
+    +schemaDescription(
+      "title",
+      "./img/img_1.jpg",
+      "description",
+      "shortDescription")
+    //schemaDescription end
+    
+    //header start
+    include ./includes/parts/main/header
+    //header end
+
+    //page-main start
+    main.main.page-main end
       .wrapper
-    include includes/main/_footer.pug
+    //page-main start
+    
+    //footer start
+    include ./includes/parts/main/footer
+    //footer end
+    include ./includes/parts/other/modal__form.pug
+    include ./includes/parts/other/modal__img.pug
+    include ./includes/parts/other/scripts.pug

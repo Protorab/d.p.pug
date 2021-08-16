@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const phoneInput = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
   const phoneLink = document.querySelectorAll("a[href^='tel']");
-  const burgerMenu = document.querySelector(".burger__menu");
+  const burgerMenu = document.querySelector(".menu__burger");
   const menu = document.querySelector(".menu-nav");
   const modalCloseIcons = document.querySelectorAll(".close__modal");
   const body = document.querySelector("body");

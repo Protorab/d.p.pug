@@ -9,3 +9,8 @@
 @import "./import/_list-style";
 @import "./import/_header";
 @import "./import/_footer";
+
+.logo {
+  @include adaptive(width, 100, 50, 0);
+  @include adaptive(height, 100, 50, 0);
+}
