@@ -1,0 +1,78 @@
+.article {
+  width: 100%;
+  table {
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    @include adaptive(margin-bottom, 80, 40, 0);
+  }
+  p,
+  a {
+    @include adaptive(margin-bottom, 15, 5, 0);
+
+    &:last-child,
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  strong {
+    font-weight: bolder;
+  }
+  mark {
+    color: $mainColor;
+    background: $accent;
+  }
+  h {
+    @for $i from 1 through 6 {
+      &#{$i} {
+        font-family: Raleway, sans-serif;
+
+        @include adaptive(margin-bottom, 40, 20, 0);
+        max-width: 50%;
+
+        @media only screen and (max-width: 1024px) {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  a {
+    @include _transition(all, 0.35s);
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  tr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include adaptive(margin, -50, -10, 0);
+    flex-wrap: wrap;
+  }
+
+  td {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    @include adaptive(margin, 50, 10, 0);
+    flex: 1 1 calc(50% - 100px);
+
+    @media only screen and (max-width: 1024px) {
+      flex: 1 1 calc(50% - 20px);
+    }
+  }
+
+  hr {
+    @include adaptive(width, 100, 50, 0);
+    height: 2px;
+    background: $accent;
+  }
+}

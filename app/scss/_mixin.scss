@@ -27,6 +27,8 @@
 
 @mixin adaptive($property, $startSize, $minSize, $type) {
   $addSize: $startSize - $minSize;
+  $vw-context: $maxWidth * 0.01 * 1;
+  // $vw-contextMx: $maxWidthMx * 0.01 * 1;
 
   @if $type==1 {
     //только если меньше контейнера
@@ -62,6 +64,22 @@
 
     @media (min-width: 2560px) {
       #{$property}: $startSize + px;
+    }
+  } @else if $type==4 {
+    #{$property}: calc(
+      #{$minSize+px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320})
+    ) !important;
+
+    // @media only screen and (min-width : 1920px) {
+    //   #{$property}:calc((#{$startSize} / #{$vw-context}) * 1vw);
+    // }
+
+    @media (min-width: 1152px) {
+      #{$property}: calc((#{$startSize} / #{$vw-context}) * 1vw) !important;
+    }
+
+    @media (min-width: 2560px) {
+      #{$property}: $startSize + px !important;
     }
   } @else {
     #{$property}: calc(
