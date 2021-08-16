@@ -1,6 +1,6 @@
 import { modalOpen, modalClose, bodyLock, bodyUnlock } from "./modalWindow";
 const showModalInit = () => {
-  const showModals = document.querySelectorAll(".show__modal");
+  const showModals = document.querySelectorAll(".show-modal");
   if (showModals.length > 0) {
     showModals.forEach((showModal) => {
       showModal.addEventListener("click", (e) => {

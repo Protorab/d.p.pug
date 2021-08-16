@@ -35,7 +35,7 @@ const path = {
   src: {
     html: [appFolder + "/*.html", "!" + appFolder + "/_*.html"],
     pug: appFolder + "/*.pug",
-    css: appFolder + "/scss/main.scss",
+    css: appFolder + "/scss/**/*.scss",
     js: appFolder + "/js/main.js",
     img: appFolder + "/img/**/*.+(png|jpg|gif|ico|svg|webp)",
     fonts: appFolder + "/fonts/*",
@@ -46,7 +46,7 @@ const path = {
   watch: {
     html: appFolder + "/**/*.html",
     pug: appFolder + "/**/*.pug",
-    css: appFolder + "/scss/main.scss",
+    css: appFolder + "/scss/**/*.scss",
     js: appFolder + "/js/**/*.js",
     img: appFolder + "/img/**/*.+(png|jpg|gif|ico|svg|webp)",
     assets: appFolder + "/assets/**/*",
@@ -60,13 +60,6 @@ function browsersync() {
   browserSync.init({
     server: {
       baseDir: "./" + distFolder + "/",
-
-      // comment this part if u want to use pug
-      // middleware: bssi({
-      //   baseDir: "./" + appFolder + "/",
-      //   ext: ".html",
-      // }),
-      // ==========================
     },
     notify: false,
     online: true,
@@ -180,28 +173,12 @@ function cleanimg() {
 }
 
 function fonts() {
-  return src(path.src.fonts)
-    .pipe(ttf2woff())
-    .pipe(dest(path.build.fonts))
-    .pipe(ttf2woff2())
-    .pipe(dest(path.build.fonts));
-}
-
-function deploy() {
-  return src(distFolder).pipe(
-    rsync({
-      root: distFolder,
-      hostname: "username@yousite.com",
-      destination: "yousite/public_html/",
-      include: [
-        /* '*.htaccess' */
-      ], // Included files to deploy,
-      exclude: ["**/Thumbs.db", "**/*.DS_Store"],
-      recursive: true,
-      archive: true,
-      silent: false,
-      compress: true,
-    })
+  return (
+    src(path.src.fonts)
+      // .pipe(ttf2woff())
+      // .pipe(dest(path.build.fonts))
+      .pipe(ttf2woff2())
+      .pipe(dest(path.build.fonts))
   );
 }
 
@@ -226,7 +203,6 @@ exports.html = html;
 exports.pugFunc = pugFunc;
 exports.fonts = fonts;
 exports.cleanimg = cleanimg;
-exports.deploy = deploy;
 exports.default = series(
   clean,
   scripts,

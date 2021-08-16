@@ -1,0 +1,15 @@
+.header {
+  @include _transition(all, 0.5s);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: $mainColor;
+
+  // .header-wrapper
+  &-wrapper {
+    padding: 10px 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

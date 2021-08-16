@@ -1,40 +1,43 @@
-// inputmask
+// import inputmask
 import inputmask from "inputmask";
-//  class removable function
-import classRemove from "./functions/classRemove";
-// attrClear function
+
+// import attrClear function
 import attrClear from "./functions/attrClear";
-// functions modalWindow
-import {
-  modalOpen,
-  modalClose,
-  bodyLock,
-  bodyUnlock,
-} from "./functions/modalWindow";
-// functions modalWindow init
+
+// import modalWindow functions
+import { modalClose } from "./functions/modalWindow";
+
+// import modalWindow init functions
 import modalWindowInit from "./functions/modalWindowInit";
-// functions btns
+
+// import  btns functions
 import btnsFunc from "./functions/btns";
-// functions lazyLoading
+
+// import lazyLoading functions
 import observer from "./functions/lazyLoading";
-// functions lazyLoading
-import customSelectFunc from "./functions/customSelect";
-// functions tabsChange
-import tabsChange from "./functions/tabsChange";
-// collapsibleFunc
-import collapsibleFunc from "./functions/collapsible";
-// blink
-// import blink from "./functions/blink";
-// lazyBg function
+
+// import customSelectFunc functions
+// import customSelectFunc from "./functions/customSelect";
+
+// import tabsChange functions
+// import tabsChange from "./functions/tabsChange";
+
+// import collapsibleFunc function
+// import collapsibleFunc from "./functions/collapsible";
+
+// import lazyBg function
 import lazyBg from "./functions/lazyBg";
-// const WOW = require("wowjs");
-// window.wow = new wow.WOW();
-// window.wow.init();
+
+// import ytPlayer function
 // import ytPlayer from "./functions/youtubePlayer";
+
+// import menuDropdown function
+// import menuDropdown from "./functions/menuDropdown";
+// import showVisible
+import showVisible from "./functions/showVisible";
 
 document.addEventListener("DOMContentLoaded", () => {
   // variable start
-  const menuItem = document.querySelectorAll(".menu-link");
   const phoneInput = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
   const phoneLink = document.querySelectorAll("a[href^='tel']");
@@ -43,6 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalCloseIcons = document.querySelectorAll(".close__modal");
   const body = document.querySelector("body");
   const breadcrumb = document.querySelector(".breadcrumb");
+  const lazyImages = document.querySelectorAll(
+    "img[data-lazy-src],source[data-lazy-srcset] "
+  );
+  const animateItems = document.querySelectorAll(".animate");
 
   // variable end
 
@@ -51,11 +58,25 @@ document.addEventListener("DOMContentLoaded", () => {
   lazyBg();
   modalWindowInit();
   btnsFunc();
-  customSelectFunc();
-  collapsibleFunc();
-  tabsChange();
+  showVisible();
+  window.onscroll = showVisible;
+  // menuDropdown();
+  // customSelectFunc();
+  // collapsibleFunc();
+  // tabsChange();
   // function call end
 
+  //animate not scroll items
+  if (animateItems.length > 0) {
+    animateItems.forEach((item) => {
+      if (!item.classList.contains("scroll")) {
+        setInterval(() => {
+          item.classList.add("__show");
+        }, 1000);
+      }
+    });
+  }
+  //preventDefault last lastBreadcrumb item click
   if (breadcrumb) {
     let lastBreadcrumb = breadcrumb.lastElementChild;
 
@@ -65,6 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  // init modal close btn
   if (modalCloseIcons.length > 0) {
     modalCloseIcons.forEach((icon) => {
       icon.addEventListener("click", (e) => {
@@ -73,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
   // call close popup func on ESC keypress
   document.addEventListener("keydown", function (e) {
     if (e.which === 27) {
@@ -80,55 +104,13 @@ document.addEventListener("DOMContentLoaded", () => {
       modalClose(modalOpen);
     }
   });
+
+  // set Belarus phone mask
   let phoneMaskBy = new inputmask({
     mask: "+375-99-999-99-99",
     clearIncomplete: true,
     greedy: false,
   });
-  if (menuItem.length > 0) {
-    for (let i = 0; i < menuItem.length; i++) {
-      const item = menuItem[i];
-      item.parentNode.style.zIndex = 100 - i;
-      let dorpMenu = item.parentNode.querySelector(".menu-dropdown");
-      let arrow = document.createElement("span");
-      arrow.classList.add("arrow");
-      arrow.classList.add("arrow--menu");
-      if (dorpMenu) {
-        item.parentNode.appendChild(arrow);
-
-        item.addEventListener("click", (e) => {
-          e.preventDefault();
-          if (
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            )
-          ) {
-            if (e.currentTarget.parentNode.classList.contains("--open")) {
-              e.currentTarget.parentNode.classList.remove("--open");
-            } else {
-              e.currentTarget.parentNode.classList.add("--open");
-            }
-          }
-        });
-      }
-    }
-  }
-  // phone link clear white space
-  if (phoneLink.length > 0) {
-    phoneLink.forEach((link) => {
-      attrClear(link, "href", 2);
-    });
-  }
-
-  if (images.length > 0) {
-    images.forEach((img) => {
-      attrClear(img, "title", 1);
-      attrClear(img, "alt", 1);
-      if (img.hasAttribute("data-lazy")) {
-        observer.observe(img);
-      }
-    });
-  }
 
   // inputmask for phone input
   if (phoneInput.length > 0) {
@@ -137,18 +119,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // phone link clear white space
+  if (phoneLink.length > 0) {
+    phoneLink.forEach((link) => {
+      attrClear(link, "href", 2);
+    });
+  }
+
+  // images clear title and alt attribute
+  if (images.length > 0) {
+    images.forEach((img) => {
+      attrClear(img, "title", 1);
+      attrClear(img, "alt", 1);
+    });
+  }
+
+  //init lazy loading images
+  if (lazyImages.length > 0) {
+    lazyImages.forEach((image) => {
+      observer.observe(image);
+    });
+  }
+
   //  burgerMenu function
   if (burgerMenu) {
     burgerMenu.addEventListener("click", function (e) {
       this.classList.toggle("--clicked");
+      body.classList.toggle("--fixed");
       menu.classList.toggle("--show");
       e.preventDefault;
     });
   }
-
-  // hide menu on scroll
-  window.addEventListener("scroll", function () {
-    classRemove(".burger__menu.--clicked", "--clicked");
-    classRemove(".menu-nav.--show", "--show");
-  });
 });

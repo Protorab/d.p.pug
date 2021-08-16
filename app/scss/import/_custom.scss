@@ -1,0 +1,136 @@
+// .custom
+.custom {
+  &-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &.open {
+      .custom-options {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
+
+    &-wrapper {
+      position: relative;
+      user-select: none;
+      width: 100%;
+    }
+
+    // .custom-select-icon
+    &-icon {
+      width: 19px;
+      height: 24px;
+      margin-right: 14px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      svg {
+        @include _transition(all, 0.2s);
+        width: 100%;
+        height: auto;
+
+        * {
+          @include _transition(all, 0.2s);
+        }
+      }
+    }
+
+    // .custom-select-input
+    &-input {
+      position: absolute;
+      height: 0;
+      width: 0;
+      pointer-events: none;
+    }
+  }
+
+  &-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    @include adaptive(font-size, 20, 18, 0);
+    width: 100%;
+    height: 35px;
+    // background: $mainColor;
+    cursor: pointer;
+    border: 1px solid $textColor;
+
+    & > span {
+      margin-right: 14px;
+    }
+  }
+
+  &-options {
+    position: absolute;
+    display: block;
+    top: 95%;
+    left: 0;
+    right: 0;
+    border: 1px solid $textColor;
+    border-top: 0;
+    background: $mainColor;
+    @include _transition(all, 0.5s);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 8px 16px 0;
+  }
+
+  &-option {
+    position: relative;
+    display: block;
+    padding: 0 22px;
+    @extend .p;
+    cursor: pointer;
+    @include _transition(all, 0.5s);
+
+    &:hover {
+      background-color: $accent;
+      color: $mainColor;
+    }
+
+    &.selected {
+      color: $mainColor;
+      background-color: $accent;
+    }
+  }
+}
+.collapsible {
+  // background-color: #777;
+  // color: white;
+  cursor: pointer;
+  padding: 18px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+  }
+
+  &.active {
+  }
+
+  // .collapsible__content
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    @include _transition(all, 0.35s);
+
+    // .collapsible__content-wrapper
+    &-wrapper {
+      padding: 18px 0;
+    }
+  }
+}
