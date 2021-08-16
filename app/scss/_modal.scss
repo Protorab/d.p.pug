@@ -1,7 +1,5 @@
 .modal {
   @include _transition(all, 0.2s);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -13,12 +11,12 @@
   align-items: center;
   justify-content: center;
   z-index: 100500;
-  background: rgba(1, 1, 1, 0.75);
   overflow-x: hidden;
   overflow-y: auto;
   opacity: 0;
   visibility: hidden;
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.33);
 
   // .modal__body
   &__body {

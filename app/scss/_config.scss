@@ -100,7 +100,81 @@ $maxWidthContainer: 1300;
   // opacity: 0.5;
   // @include _transition(all, 0.5s);
 }
+
 // GENERAL DOCUMENT STYLES
+html {
+  font-size: $fontSize;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+
+  @media only screen and(max-width:1024px) {
+    &::-webkit-scrollbar {
+      display: none;
+      cursor: pointer;
+      width: 0rem;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      display: none;
+      width: 0;
+      background: transparent;
+      border-radius: 0.5rem;
+      -webkit-border-radius: 0.5rem;
+      -moz-border-radius: 0.5rem;
+      -ms-border-radius: 0.5rem;
+      -o-border-radius: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: transparent;
+    }
+  }
+}
+
+@-ms-viewport {
+  width: device-width;
+}
+
+body {
+  font-family: $userFont;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  background: $mainColor;
+  color: $textColor;
+  min-width: 320px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  overflow-x: hidden;
+
+  &.--fixed {
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+footer,
+header,
+section,
+.section {
+  width: 100%;
+  display: flex;
+  .--fixed & {
+    filter: blur(10px);
+  }
+}
+
 .wrapper {
   max-width: 1650px;
   width: calc(100% - 80px);
@@ -123,30 +197,31 @@ $maxWidthContainer: 1300;
     width: calc(100% - 30px);
   }
 }
-.schema-org {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  overflow: hidden;
-  width: 0;
-  height: 0;
-  z-index: -9999;
-  left: 0;
-  top: 0;
-}
+
+// .schema-org {
+//   position: absolute;
+//   visibility: hidden;
+//   opacity: 0;
+//   overflow: hidden;
+//   width: 0;
+//   height: 0;
+//   z-index: -9999;
+//   left: 0;
+//   top: 0;
+// }
+
 .img {
-  // .img-full
-  &-fullW {
+  //.img--full
+  &--fullW {
     width: 100%;
     height: auto;
-
-    // .img-fullw-center
-    &-center {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
+  }
+  // .img--center
+  &--center {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
 
@@ -267,73 +342,6 @@ textarea {
   }
 }
 
-.btn {
-  @include adaptive(max-width, 180, 180, 0);
-  // @include _borderRadius(5px);
-  @include _transition(all, 0.35s);
-  line-height: 0;
-  display: flex;
-  padding: 5px;
-  width: 100%;
-  height: 35px;
-  align-items: center;
-  justify-content: center;
-  background: $accentThird;
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-
-  &::before,
-  &::after {
-    @include _transition(all, 0.35s);
-    position: absolute;
-    display: block;
-    content: "";
-    height: 100%;
-    left: 0;
-  }
-
-  span {
-    position: absolute;
-    @include _transition(all, 0.35s);
-    display: block;
-    background: rgba(255, 255, 255, 0.35);
-    @include _borderRadius(50%);
-    animation-name: fullSize;
-    animation-timing-function: linear;
-    animation-duration: 0.5s;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-  }
-
-  &::before {
-    background: $accentThird;
-    z-index: -1;
-    width: 100%;
-    top: 0;
-  }
-
-  &::after {
-    // @include _borderRadius(5%);
-    top: 50%;
-    background: $accentSecond;
-    z-index: -1;
-    width: 0;
-
-    transform: translate(0, -50%);
-  }
-
-  &:hover {
-    // background: $accentSecond;
-
-    &::after {
-      // width: 400px;
-      // height: 400px;
-      // opacity: 1;
-    }
-  }
-}
 .main {
   width: 100%;
   display: flex;
@@ -502,76 +510,73 @@ a {
   }
 }
 
-html {
-  font-size: $fontSize;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent;
-  scroll-behavior: smooth;
-  text-rendering: optimizeLegibility;
-  height: 100%;
-
-  @media only screen and(max-width:1024px) {
-    &::-webkit-scrollbar {
-      display: none;
-      cursor: pointer;
-      width: 0rem;
-      background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      display: none;
-      width: 0;
-      background: transparent;
-      border-radius: 0.5rem;
-      -webkit-border-radius: 0.5rem;
-      -moz-border-radius: 0.5rem;
-      -ms-border-radius: 0.5rem;
-      -o-border-radius: 0.5rem;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: transparent;
-    }
-  }
-}
-
-@-ms-viewport {
-  width: device-width;
-}
-
-body {
-  font-family: $userFont;
-  font-size: $fontSize;
-  line-height: $lineHeight;
-  background: $mainColor;
-  color: $textColor;
-  min-width: 320px;
-  height: 100%;
-  width: 100%;
+.btn {
+  @include adaptive(max-width, 180, 180, 0);
+  // @include _borderRadius(5px);
+  @include _transition(all, 0.35s);
+  line-height: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  padding: 5px;
+  width: 100%;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  background: $accentThird;
+  color: #fff;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  z-index: 1;
 
-  &.--fixed {
+  &::before,
+  &::after {
+    @include _transition(all, 0.35s);
+    position: absolute;
+    display: block;
+    content: "";
+    height: 100%;
+    left: 0;
+  }
+
+  span {
+    position: absolute;
+    @include _transition(all, 0.35s);
+    display: block;
+    background: rgba(255, 255, 255, 0.35);
+    @include _borderRadius(50%);
+    animation-name: fullSize;
+    animation-timing-function: linear;
+    animation-duration: 0.5s;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  &::before {
+    background: $accentThird;
+    z-index: -1;
     width: 100%;
-    overflow: hidden;
+    top: 0;
+  }
+
+  &::after {
+    // @include _borderRadius(5%);
+    top: 50%;
+    background: $accentSecond;
+    z-index: -1;
+    width: 0;
+
+    transform: translate(0, -50%);
+  }
+
+  &:hover {
+    // background: $accentSecond;
+
+    &::after {
+      // width: 400px;
+      // height: 400px;
+      // opacity: 1;
+    }
   }
 }
-
-footer,
-header,
-section,
-.section {
-  width: 100%;
-  display: flex;
-}
-
 .t,
 h {
   @for $i from 1 through 6 {

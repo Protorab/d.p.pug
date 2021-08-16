@@ -35,7 +35,7 @@ const path = {
   src: {
     html: [appFolder + "/*.html", "!" + appFolder + "/_*.html"],
     pug: appFolder + "/*.pug",
-    css: appFolder + "/scss/**/*.scss",
+    css: appFolder + "/scss/*.scss",
     js: appFolder + "/js/main.js",
     img: appFolder + "/img/**/*.+(png|jpg|gif|ico|svg|webp)",
     fonts: appFolder + "/fonts/*",
@@ -46,7 +46,7 @@ const path = {
   watch: {
     html: appFolder + "/**/*.html",
     pug: appFolder + "/**/*.pug",
-    css: appFolder + "/scss/**/*.scss",
+    css: appFolder + "/scss/*.scss",
     js: appFolder + "/js/**/*.js",
     img: appFolder + "/img/**/*.+(png|jpg|gif|ico|svg|webp)",
     assets: appFolder + "/assets/**/*",
