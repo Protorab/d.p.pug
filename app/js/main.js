@@ -65,7 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // collapsibleFunc();
   // tabsChange();
   // function call end
-
+  setTimeout(() => {
+    let body = document.querySelector("body");
+    body.classList.add("__loading");
+    body.classList.add("--fixed");
+    for (let i = 0; i < 100; i++) {
+      preloaderProgress.value++;
+    }
+    window.setTimeout(function () {
+      body.classList.add("__load");
+      body.classList.remove("__loading");
+      body.classList.remove("--fixed");
+    }, 700);
+  }, 100);
   //animate not scroll items
   if (animateItems.length > 0) {
     animateItems.forEach((item) => {

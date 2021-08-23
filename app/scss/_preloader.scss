@@ -1,0 +1,65 @@
+.preloader {
+  @include _transition(all, 0.478s);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: $mainColor;
+  z-index: 90;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .__loading & {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  // .preloader__logo
+  &__logo {
+    @include adaptive(width, 200, 150, 0);
+    @include adaptive(margin-bottom, 35, 25, 0);
+    animation-name: showInUp;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // .preloader__progress
+  &__progress {
+    animation-name: showInDown;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    @include _transition(all, 0.478s);
+    @include adaptive(width, 250, 200, 0);
+    @include _borderRadius(50%);
+    height: 5px;
+
+    &[value] {
+      &::-webkit-progress-bar {
+        @include _transition(all, 0.478s);
+        background-color: #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+      }
+
+      &::-webkit-progress-value {
+        @include _transition(all, 0.478s);
+        background: $accentColor;
+      }
+    }
+  }
+}

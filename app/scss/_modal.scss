@@ -29,15 +29,25 @@
     // align-items: center;
     // justify-content: center;
     // .modal__body_Img
-    &_img {
-      height: 97%;
-      width: auto;
-      justify-content: center;
-      align-items: center;
+    &.__img {
+      max-width: 95%;
+      width: 100%;
+      height: 100%;
+      max-height: 97%;
+      overflow: hidden;
 
-      @media only screen and (max-width: 1152px) {
+      @media only screen and (max-width: 600px) {
+        max-width: 95%;
+        // width: auto;
         height: auto;
-        max-width: 90%;
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+
+        max-height: 97%;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
       }
     }
   }
@@ -140,34 +150,53 @@
     }
   }
 
-  // .modal__img
+  // .modal__img {
   &__img {
     transform: scale(0);
-    background: unset;
-    height: 100%;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
     cursor: pointer;
-    display: block;
+    margin: 0 auto;
+    background: unset;
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
 
     img {
+      width: 100%;
       max-width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+
+      @media only screen and (min-width: 600px) {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    @media only screen and (min-width: 600px) {
+      // width: fit-content;
       width: auto;
       height: 100%;
+      // height: fit-content;
+      display: flex;
+
+      align-self: center;
     }
 
     .--open & {
       transform: scale(1);
     }
-
-    @media only screen and (max-width: 1152px) {
-      height: auto;
-
-      img {
-        height: auto;
-        width: 100%;
-      }
-    }
   }
-
   &.--open {
     opacity: 1;
     visibility: visible;
