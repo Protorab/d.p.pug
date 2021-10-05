@@ -1,7 +1,7 @@
 // USER VARIABLES SECTION
-$accent: #5bd2f3; // Accent Color
-$accentSecond: #e7552b; // Accent Second Color
-$accentThird: #f0a21a; // Accent Third Color
+$accentColor: #5bd2f3; // Accent Color
+$accentSecondColor: #e7552b; // Accent Second Color
+$accentThirdColor: #f0a21a; // Accent Third Color
 $mainColor: #1b556f; // Body Background Color
 $fontSize: 10px; // Body Font Size
 $textColor: #eaf2f5; // Text Color
@@ -386,7 +386,7 @@ ol {
 }
 
 ::selection {
-  background-color: $accent;
+  background-color: $accentColor;
   color: #fff;
 }
 
@@ -521,7 +521,7 @@ a {
   height: 35px;
   align-items: center;
   justify-content: center;
-  background: $accentThird;
+  background: $accentThirdColor;
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -551,7 +551,7 @@ a {
   }
 
   &::before {
-    background: $accentThird;
+    background: $accentThirdColor;
     z-index: -1;
     width: 100%;
     top: 0;
@@ -560,7 +560,7 @@ a {
   &::after {
     // @include _borderRadius(5%);
     top: 50%;
-    background: $accentSecond;
+    background: $accentSecondColor;
     z-index: -1;
     width: 0;
 
@@ -568,7 +568,7 @@ a {
   }
 
   &:hover {
-    // background: $accentSecond;
+    // background: $accentSecondColor;
 
     &::after {
       // width: 400px;

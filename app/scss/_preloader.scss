@@ -41,7 +41,7 @@
   // .preloader__progress
   &__progress {
     animation-name: showInDown;
-    animation-duration: 1s;
+    animation-duration: 0.75s;
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out;
     @include _transition(all, 0.478s);
@@ -58,6 +58,8 @@
 
       &::-webkit-progress-value {
         @include _transition(all, 0.478s);
+        transition-delay: 0.5s;
+
         background: $accentColor;
       }
     }

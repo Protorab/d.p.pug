@@ -1,0 +1,25 @@
+// FONTS LOAD SECTION
+@include font("Circe", normal, 100, "../fonts/Circe-Thin.woff2");
+@include font("Circe", normal, 300, "../fonts/Circe-Light.woff2");
+@include font("Circe", normal, 400, "../fonts/Circe-Regular.woff2");
+@include font("Circe", normal, 700, "../fonts/Circe-Bold.woff2");
+@include font("Circe", normal, 900, "../fonts/Circe-ExtraBold.woff2");
+@include font("Montserrat", normal, 100, "../fonts/Montserrat-Thin.woff2");
+@include font(
+  "Montserrat",
+  italic,
+  100,
+  "../fonts/Montserrat-ThinItalic.woff2"
+);
+@include font("Montserrat", normal, 300, "../fonts/Montserrat-Light.woff2");
+@include font("Montserrat", normal, 400, "../fonts/Montserrat-Regular.woff2");
+@include font("Montserrat", italic, 400, "../fonts/Montserrat-Italic.woff2");
+@include font("Montserrat", normal, 500, "../fonts/Montserrat-Medium.woff2");
+@include font("Montserrat", normal, 600, "../fonts/Montserrat-SemiBold.woff2");
+@include font("Montserrat", normal, 700, "../fonts/Montserrat-Bold.woff2");
+@include font(
+  "Montserrat",
+  italic,
+  700,
+  "../fonts/Montserrat-BoldItalic.woff2"
+);

@@ -96,13 +96,13 @@
     @include _transition(all, 0.5s);
 
     &:hover {
-      background-color: $accent;
+      background-color: $accentColor;
       color: $mainColor;
     }
 
     &.selected {
       color: $mainColor;
-      background-color: $accent;
+      background-color: $accentColor;
     }
   }
 }

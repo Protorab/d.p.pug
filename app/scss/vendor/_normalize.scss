@@ -102,6 +102,19 @@ button:-moz-focusring,
 fieldset {
   padding: 0;
   margin: 0;
+  display: inline-flex;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-block-start: 0em;
+  padding-inline-start: 0em;
+  padding-inline-end: 0em;
+  padding-block-end: 0em;
+  min-inline-size: min-content;
+  border-width: 0px;
+  border-style: unset;
+  border-color: unset;
+  border-image: unset;
+  border: none;
 }
 
 legend {
@@ -110,6 +123,7 @@ legend {
   padding: 0;
   margin: 0;
   white-space: normal;
+  display: inline-flex;
 }
 
 progress {

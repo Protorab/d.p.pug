@@ -49,10 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const lazyImages = document.querySelectorAll(
     "img[data-lazy-src],source[data-lazy-srcset] "
   );
+  const preloaderProgress = document.querySelector(".preloader__progress");
   const animateItems = document.querySelectorAll(".animate");
 
   // variable end
-
   // function call start
   // ytPlayer();
   lazyBg();
