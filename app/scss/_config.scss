@@ -9,8 +9,6 @@ $textSecondColor: #b0b1b1; // Text Color
 $lineHeight: 1.65; // Document Line Height
 $userFont: Roboto, sans-serif; // User Font Family
 $systemFont: -apple-system, BlinkMacSystemFont, Arial, sans-serif; // System Font Family
-$maxWidth: 1920;
-$maxWidthContainer: 1300;
 
 // FONTS LOAD SECTION
 @include font("Roboto", normal, 400, "../fonts/roboto-regular-webfont.woff2");

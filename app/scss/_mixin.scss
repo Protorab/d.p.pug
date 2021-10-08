@@ -1,4 +1,67 @@
+$maxWidth: 1920;
+$maxWidthContainer: 1300;
+$maxHeight: 1326;
+$maxMobileWidth: 375;
+$width-screen: "(min-width: #{$maxWidth}px)";
+$height-screen: "(min-height: #{$maxHeight}px)";
+// Function
+@function get-vw($target) {
+  // 1 vw is equal to 1% of the viewport width
+  $vw-context: ($maxWidth * 0.01) * 1px; // 1% viewport width
+  @return ($target/$vw-context) * 1vw;
+}
+@function get-vh($target) {
+  // 1 vw is equal to 1% of the viewport width
+  $vw-context: ($maxHeight * 0.01) * 1px; // 1% viewport width
+  @return ($target/$vw-context) * 1vh;
+}
+@function get-mvw($target) {
+  // 1 vw is equal to 1% of the viewport width
+  $vw-context: ($maxMobileWidth * 0.01) * 1px; // 1% viewport width
+  @return ($target/$vw-context) * 1vw;
+}
+
 //MIXINS
+@mixin vw($property, $size, $type: 0) {
+  @if $type==1 {
+    #{$property}: get-vw($size) !important;
+    // Prevent font-size from getting too big
+    @media #{$width-screen} {
+      #{$property}: $size !important;
+    }
+  } @else {
+    #{$property}: get-vw($size);
+    // Prevent font-size from getting too big
+    @media #{$width-screen} {
+      #{$property}: $size;
+    }
+  }
+}
+
+@mixin vh($property, $size, $type: 0) {
+  @if $type==1 {
+    #{$property}: get-vh($size) !important;
+    // Prevent font-size from getting too big
+    @media #{$height-screen} {
+      #{$property}: $size !important;
+    }
+  } @else {
+    #{$property}: get-vh($size);
+    // Prevent font-size from getting too big
+    @media #{$height-screen} {
+      #{$property}: $size;
+    }
+  }
+}
+
+@mixin mvw($property, $size, $type: 0) {
+  @if $type==1 {
+    #{$property}: get-mvw($size) !important;
+  } @else {
+    #{$property}: get-mvw($size);
+  }
+}
+
 @mixin font($fname, $fstyle, $fweight, $furl) {
   @font-face {
     font-family: $fname;
@@ -34,7 +97,7 @@
     //только если меньше контейнера
     #{$property}: $startSize + px;
 
-    @media (max-width: #{$maxWidthContainer} + px) {
+    @media (maxWidth: #{$maxWidthContainer} + px) {
       #{$property}: calc(
         #{$minSize + px} + #{$addSize} *
           ((100vw - 320px) / #{$maxWidthContainer - 320})
@@ -94,10 +157,4 @@
 
 @mixin coll($collCount, $collGap) {
   flex: 1 1 calc((100% / #{$collCount}) - #{$collGap});
-}
-
-@function get-vw($property) {
-  $vw-context: $maxWidth * 0.01 * 1px;
-  @return $property / $vw-context * 1vw;
-  @return $property;
 }

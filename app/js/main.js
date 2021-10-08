@@ -1,9 +1,7 @@
 // import inputmask
-import inputmask from "inputmask";
-
+// import inputmask from "inputmask";
 // import attrClear function
 import attrClear from "./functions/attrClear";
-
 // import modalWindow functions
 import { modalClose } from "./functions/modalWindow";
 
@@ -38,7 +36,7 @@ import showVisible from "./functions/showVisible";
 
 document.addEventListener("DOMContentLoaded", () => {
   // variable start
-  const phoneInput = document.querySelectorAll("input[type=tel]");
+  const phoneInputs = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
   const phoneLink = document.querySelectorAll("a[href^='tel']");
   const burgerMenu = document.querySelector(".menu__burger");
@@ -65,6 +63,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // collapsibleFunc();
   // tabsChange();
   // function call end
+  function handleInput(e) {
+    e.target.value = phoneMask(e.target.value);
+  }
+  function phoneMask(phone) {
+    return phone
+      .replace(/\D/g, "")
+      .replace(/^(\d)/, "($1")
+      .replace(/^(\(\d{2})(\d)/, "$1) $2")
+      .replace(/(\d{3})(\d{1,5})/, "$1-$2")
+      .replace(/(-\d{2})(\d{1,5})/, "$1-$2")
+      .replace(/(-\d{2})(\d{1,5})/, "$1");
+  }
+
+  phoneInputs.forEach((input) => {
+    input.addEventListener("input", handleInput, false);
+
+    input.addEventListener("blur", (e) => {
+      let _this = e.currentTarget;
+      console.log(" _this.value.length :>> ", _this.value.length);
+      // _this.value.length < 14 ? (_this.value = "") : "";
+    });
+  });
   setTimeout(() => {
     let body = document.querySelector("body");
     body.classList.add("__loading");
@@ -118,18 +138,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // set Belarus phone mask
-  let phoneMaskBy = new inputmask({
-    mask: "+375-99-999-99-99",
-    clearIncomplete: true,
-    greedy: false,
-  });
+  // let phoneMaskBy = new inputmask({
+  //   mask: "+375-99-999-99-99",
+  //   clearIncomplete: true,
+  //   greedy: false,
+  // });
 
   // inputmask for phone input
-  if (phoneInput.length > 0) {
-    phoneInput.forEach((phoneMask) => {
-      phoneMaskBy.mask(phoneMask);
-    });
-  }
+  // if (phoneInput.length > 0) {
+  //   phoneInput.forEach((phoneMask) => {
+  //     phoneMaskBy.mask(phoneMask);
+  //   });
+  // }
 
   // phone link clear white space
   if (phoneLink.length > 0) {

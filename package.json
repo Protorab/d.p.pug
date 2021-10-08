@@ -31,7 +31,7 @@
 	"dependencies": {
 		"@splidejs/splide": "^2.4.21",
 		"inputmask": "^5.0.5",
-		"swiper": "^6.7.0",
+		"swiper": "^6.7.0",	 
 		"wowjs": "^1.1.3"
 	}
 }
