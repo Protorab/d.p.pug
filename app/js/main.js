@@ -4,7 +4,7 @@
 import attrClear from "./functions/attrClear";
 // import modalWindow functions
 import { modalClose } from "./functions/modalWindow";
-
+import simplePhoneMusk from "./functions/simplePhoneMusk";
 // import modalWindow init functions
 import modalWindowInit from "./functions/modalWindowInit";
 
@@ -36,7 +36,6 @@ import showVisible from "./functions/showVisible";
 
 document.addEventListener("DOMContentLoaded", () => {
   // variable start
-  const phoneInputs = document.querySelectorAll("input[type=tel]");
   const images = document.querySelectorAll("img");
   const phoneLink = document.querySelectorAll("a[href^='tel']");
   const burgerMenu = document.querySelector(".menu__burger");
@@ -62,29 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // customSelectFunc();
   // collapsibleFunc();
   // tabsChange();
+  simplePhoneMusk();
   // function call end
-  function handleInput(e) {
-    e.target.value = phoneMask(e.target.value);
-  }
-  function phoneMask(phone) {
-    return phone
-      .replace(/\D/g, "")
-      .replace(/^(\d)/, "($1")
-      .replace(/^(\(\d{2})(\d)/, "$1) $2")
-      .replace(/(\d{3})(\d{1,5})/, "$1-$2")
-      .replace(/(-\d{2})(\d{1,5})/, "$1-$2")
-      .replace(/(-\d{2})(\d{1,5})/, "$1");
-  }
 
-  phoneInputs.forEach((input) => {
-    input.addEventListener("input", handleInput, false);
-
-    input.addEventListener("blur", (e) => {
-      let _this = e.currentTarget;
-      console.log(" _this.value.length :>> ", _this.value.length);
-      // _this.value.length < 14 ? (_this.value = "") : "";
-    });
-  });
   setTimeout(() => {
     let body = document.querySelector("body");
     body.classList.add("__loading");
