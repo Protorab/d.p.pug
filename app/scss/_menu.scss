@@ -62,43 +62,62 @@
     @include _transition(all, 0.5s);
 
     @media only screen and (max-width: 1152px) {
-      @include adaptive(width, 300, 300, 0);
+      width: 100vw;
+      height: 100vh;
       position: fixed;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
-      background: $mainColor;
+      background: rgba($mainColor, 0.5);
       top: 0;
+      right: 0;
+      bottom: 0;
       left: 0;
-      // width: 300px;
-      padding-top: 80px;
-      padding-bottom: 40px;
-      transform: translate(-100%, 0);
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-      border-bottom: 8px solid $accentSecondColor;
+      padding: 0;
+      margin: 0;
+      // transform: translate(-100%, 0);
+      pointer-events: none;
+      opacity: 0;
 
       &:not(.__show) {
         transition-delay: 0.4s;
+
+        .menu {
+          transition-delay: 0.4s;
+          transform: translate(-100%, 0);
+        }
       }
 
       &.__show {
         transform: translate(0%, 0);
         transition-delay: 0;
+        pointer-events: all;
+        opacity: 1;
+        backdrop-filter: blur(10px);
       }
-    }
-
-    @media only screen and (max-width: 600px) {
-      padding-top: 100px;
     }
   }
 
-  list-style: none;
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   @include _transition(all, 0.5s);
-
+  @media only screen and (max-width: 1152px) {
+    will-change: transform;
+    @include adaptive(width, 300, 300, 0);
+    padding-top: 80px;
+    padding-bottom: 40px;
+    background: $mainColor;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-bottom: 8px solid $accentSecondColor;
+    @media only screen and (max-width: 600px) {
+      padding-top: 100px;
+    }
+  }
   // .menu__item {
   &__item {
     @include adaptive(height, 45, 30, 0);
@@ -283,12 +302,5 @@
       width: 100%;
       left: 10px;
     }
-  }
-
-  @media only screen and (max-width: 1152px) {
-    flex-direction: column;
-    margin-bottom: 25px;
-    align-items: flex-start;
-    justify-content: flex-start;
   }
 }

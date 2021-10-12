@@ -17,7 +17,7 @@
   visibility: hidden;
   cursor: pointer;
   background: rgba(0, 0, 0, 0.33);
-
+  will-change: opacity;
   // .modal__body
   &__body {
     position: relative;
@@ -25,13 +25,13 @@
     max-width: 95%;
     max-height: 97%;
     display: flex;
+
     // .modal__body-img {
     &-img {
       max-width: 95%;
       width: 100%;
       height: 100%;
       max-height: 97%;
-      // overflow: hidden;
 
       @media only screen and (max-width: 1152px) {
         max-width: 95%;
@@ -53,10 +53,13 @@
     z-index: 2;
     opacity: 0;
     transform: translate(0px, -50%);
+
+    will-change: transform;
     perspective-origin: 30px;
     width: 100%;
     height: 100%;
 
+    //.__open .modal__content
     .__open & {
       opacity: 1;
       transform: translate(0px, 0px);
@@ -74,6 +77,7 @@
     display: flex;
     @include _transition(transform, 0.3s);
 
+    // .modal__close span {
     span {
       position: absolute;
       right: 0%;
@@ -84,6 +88,7 @@
       height: 3px;
       bottom: 10px;
 
+      // .modal__close span:nth-child(2) {
       &:nth-child(2) {
         transform: rotate(-45deg);
       }
@@ -102,16 +107,16 @@
       background: $accentColor;
       @include _transition(all, 0.3s);
 
+      // .modal__close-out span {
       span {
         position: absolute;
-        // right: 0%;
         transform: rotate(45deg);
         display: block;
         background: $textColor;
         width: 100%;
         height: 3px;
-        // bottom: 10px;
 
+        // .modal__close-out span:nth-child(2) {
         &:nth-child(2) {
           transform: rotate(-45deg);
         }
@@ -120,6 +125,7 @@
         top: 0;
         right: -25px;
 
+        // .modal__close-out:hover {
         &:hover {
           background: $accentSecondColor;
         }
@@ -177,19 +183,15 @@
   // .modal__img {
   &__img {
     transform: scale(0);
+    will-change: transform;
     width: 100%;
     height: auto;
     max-height: 100%;
     cursor: pointer;
     margin: 0 auto;
     background: unset;
-    // display: grid;
-    // grid-template-columns: repeat(1, 100%);
-    // justify-content: center;
-    // justify-items: center;
-    // align-items: center;
-    // align-content: center;
 
+    // .modal__img img {
     img {
       width: 100%;
       max-width: 100%;
@@ -208,22 +210,30 @@
     }
 
     @media only screen and (min-width: 1152px) {
-      // width: fit-content;
       width: auto;
       height: 100%;
-      // height: fit-content;
       display: flex;
-
       align-self: center;
     }
 
+    // .__open .modal__img {
     .__open & {
       transform: scale(1);
     }
   }
+  // .modal.__open {
   &.__open {
     opacity: 1;
     visibility: visible;
+    background-image: url("../img/myblurfilter.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
   }
 }
 

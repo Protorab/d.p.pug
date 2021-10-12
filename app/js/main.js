@@ -55,6 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
         : "";
     }
   };
+
+  const menuShow = () => {
+    burgerMenu.classList.add("__clicked");
+    body.classList.add("__fixed");
+    menu.classList.add("__show");
+  };
+
+  const menuHide = () => {
+    burgerMenu.classList.remove("__clicked");
+    body.classList.remove("__fixed");
+    menu.classList.remove("__show");
+  };
+
   setTimeout(() => {
     let body = document.querySelector("body");
     body.classList.add("__loading");
@@ -107,7 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", function (e) {
     if (e.which === 27) {
       const modalOpen = document.querySelector(".modal.__open");
-      modalClose(modalOpen);
+      const menuShown = document.querySelector(".menu-nav.__show");
+      modalOpen ? modalClose(modalOpen) : "";
+      menuShown ? menuHide() : "";
     }
   });
 
@@ -135,11 +150,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //  burgerMenu function
   if (burgerMenu) {
-    burgerMenu.addEventListener("click", function (e) {
-      this.classList.toggle("__clicked");
-      body.classList.toggle("__fixed");
-      menu.classList.toggle("__show");
-      e.preventDefault;
+    burgerMenu.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.currentTarget.classList.contains("__clicked") ? menuHide() : menuShow();
+      const menuShown = document.querySelector(".menu-nav.__show");
+      if (menuShown) {
+        menuShown.addEventListener("click", (e) => {
+          let _this = e.target;
+          if (!_this.closest(".menu")) {
+            menuHide();
+          }
+        });
+      }
     });
   }
 
