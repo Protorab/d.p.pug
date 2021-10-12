@@ -1,38 +1,20 @@
-// import inputmask
-// import inputmask from "inputmask";
-// import attrClear function
+// importing start
 import attrClear from "./functions/attrClear";
-// import modalWindow functions
 import { modalClose } from "./functions/modalWindow";
 import simplePhoneMusk from "./functions/simplePhoneMusk";
-// import modalWindow init functions
 import modalWindowInit from "./functions/modalWindowInit";
-
-// import  btns functions
 import btnsFunc from "./functions/btns";
-
-// import lazyLoading functions
 import observer from "./functions/lazyLoading";
-
-// import customSelectFunc functions
-// import customSelectFunc from "./functions/customSelect";
-
-// import tabsChange functions
-// import tabsChange from "./functions/tabsChange";
-
-// import collapsibleFunc function
-// import collapsibleFunc from "./functions/collapsible";
-
-// import lazyBg function
 import lazyBg from "./functions/lazyBg";
-
-// import ytPlayer function
+import setMarginTop from "./functions/setMarginTop";
+import simpleAnimate from "./functions/simpleAnimate";
+// import customSelectFunc from "./functions/customSelect";
+// import tabsChange from "./functions/tabsChange";
+// import collapsibleFunc from "./functions/collapsible";
 // import ytPlayer from "./functions/youtubePlayer";
-
-// import menuDropdown function
 // import menuDropdown from "./functions/menuDropdown";
-// import showVisible
-import showVisible from "./functions/showVisible";
+// import setBelarusPhoneMask from "./functions/setBelarusPhoneMask";
+// importing end
 
 document.addEventListener("DOMContentLoaded", () => {
   // variable start
@@ -48,41 +30,54 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const preloaderProgress = document.querySelector(".preloader__progress");
   const animateItems = document.querySelectorAll(".animate");
-
   // variable end
-  // function call start
+
+  // functions call start
   // ytPlayer();
-  lazyBg();
-  modalWindowInit();
-  btnsFunc();
-  showVisible();
-  window.onscroll = showVisible;
+  // setBelarusPhoneMask();
   // menuDropdown();
   // customSelectFunc();
   // collapsibleFunc();
   // tabsChange();
+  lazyBg();
+  modalWindowInit();
+  btnsFunc();
+  simpleAnimate();
   simplePhoneMusk();
-  // function call end
+  // functions call end
 
+  //functions start
+  const setMainMarginTop = () => {
+    let main = document.querySelector(".main");
+    if (main) {
+      !main.classList.contains("mt__nan")
+        ? setMarginTop("#header", ".main")
+        : "";
+    }
+  };
   setTimeout(() => {
     let body = document.querySelector("body");
     body.classList.add("__loading");
-    body.classList.add("--fixed");
+    body.classList.add("__fixed");
     for (let i = 0; i < 100; i++) {
       preloaderProgress.value++;
     }
     window.setTimeout(function () {
       body.classList.add("__load");
       body.classList.remove("__loading");
-      body.classList.remove("--fixed");
+      body.classList.remove("__fixed");
     }, 700);
   }, 100);
+  //functions end
+
+  setMainMarginTop();
+
   //animate not scroll items
   if (animateItems.length > 0) {
     animateItems.forEach((item) => {
       if (!item.classList.contains("scroll")) {
         setInterval(() => {
-          item.classList.add("__show");
+          item.classList.add("__animated");
         }, 1000);
       }
     });
@@ -111,24 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // call close popup func on ESC keypress
   document.addEventListener("keydown", function (e) {
     if (e.which === 27) {
-      const modalOpen = document.querySelector(".modal.--open");
+      const modalOpen = document.querySelector(".modal.__open");
       modalClose(modalOpen);
     }
   });
-
-  // set Belarus phone mask
-  // let phoneMaskBy = new inputmask({
-  //   mask: "+375-99-999-99-99",
-  //   clearIncomplete: true,
-  //   greedy: false,
-  // });
-
-  // inputmask for phone input
-  // if (phoneInput.length > 0) {
-  //   phoneInput.forEach((phoneMask) => {
-  //     phoneMaskBy.mask(phoneMask);
-  //   });
-  // }
 
   // phone link clear white space
   if (phoneLink.length > 0) {
@@ -155,10 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
   //  burgerMenu function
   if (burgerMenu) {
     burgerMenu.addEventListener("click", function (e) {
-      this.classList.toggle("--clicked");
-      body.classList.toggle("--fixed");
-      menu.classList.toggle("--show");
+      this.classList.toggle("__clicked");
+      body.classList.toggle("__fixed");
+      menu.classList.toggle("__show");
       e.preventDefault;
     });
   }
+
+  window.onscroll = function () {
+    simpleAnimate();
+  };
+  window.onresize = function () {
+    setTimeout(() => {
+      setMainMarginTop();
+    }, 1000);
+  };
 });

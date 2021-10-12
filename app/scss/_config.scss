@@ -10,17 +10,6 @@ $lineHeight: 1.65; // Document Line Height
 $userFont: Roboto, sans-serif; // User Font Family
 $systemFont: -apple-system, BlinkMacSystemFont, Arial, sans-serif; // System Font Family
 
-// FONTS LOAD SECTION
-@include font("Roboto", normal, 400, "../fonts/roboto-regular-webfont.woff2");
-@include font("Roboto", italic, 400, "../fonts/roboto-italic-webfont.woff2");
-@include font("Roboto", normal, 700, "../fonts/roboto-bold-webfont.woff2");
-@include font(
-  "Roboto",
-  italic,
-  700,
-  "../fonts/roboto-bolditalic-webfont.woff2"
-);
-// ZEROING SECTION
 * {
   margin: 0;
   padding: 0;
@@ -98,10 +87,16 @@ $systemFont: -apple-system, BlinkMacSystemFont, Arial, sans-serif; // System Fon
   // opacity: 0.5;
   // @include _transition(all, 0.5s);
 }
+::placeholder {
+  color: $textColor;
+}
 
-// GENERAL DOCUMENT STYLES
+::selection {
+  background-color: $accentColor;
+  color: #fff;
+}
+
 html {
-  font-size: $fontSize;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -139,16 +134,18 @@ html {
 @-ms-viewport {
   width: device-width;
 }
-
+html,
 body {
-  font-family: $userFont;
+  min-width: 320px;
+  width: 100%;
+  min-height: 100%;
   font-size: $fontSize;
+  font-family: $userFont;
   line-height: $lineHeight;
   background: $mainColor;
   color: $textColor;
-  min-width: 320px;
-  height: 100%;
-  width: 100%;
+}
+body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -156,248 +153,24 @@ body {
   position: relative;
   overflow-x: hidden;
 
-  &.--fixed {
+  &.__fixed {
     width: 100%;
     overflow: hidden;
   }
 }
 
-footer,
-header,
-section,
-.section {
-  width: 100%;
-  display: flex;
-  .--fixed & {
-    filter: blur(10px);
-  }
-}
-
-.wrapper {
-  max-width: 1650px;
-  width: calc(100% - 80px);
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  @media only screen and (min-width: 1680px) {
-    width: 100%;
-  }
-
-  @media only screen and (max-width: 1024px) {
-    width: calc(100% - 55px);
-  }
-
-  @media only screen and (max-width: 600px) {
-    width: calc(100% - 30px);
-  }
-}
-
-// .schema-org {
-//   position: absolute;
-//   visibility: hidden;
-//   opacity: 0;
-//   overflow: hidden;
-//   width: 0;
-//   height: 0;
-//   z-index: -9999;
-//   left: 0;
-//   top: 0;
-// }
-
-.img {
-  //.img--full
-  &--fullW {
-    width: 100%;
-    height: auto;
-  }
-  // .img--center
-  &--center {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-}
-
-.tab {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  // .tab__container
-  &__container {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  // .tab__content
-  &__content {
-    max-height: 0;
-    overflow: hidden;
-    @include _transition(all, 0.35s);
-
-    &.--active {
-      max-height: unset;
-    }
-  }
-
-  // .tab__wrapper
-  &__wrapper {
-    opacity: 0;
-    @include _transition(all, 0.35s);
-    transform: translate(0, -100%);
-
-    .--active > & {
-      opacity: 1;
-      transform: translate(0, 0%);
-    }
-  }
-}
-input,
-textarea {
-  @include _transition(all, 0.5s);
-  @extend .p;
-  @include _borderRadius(5px);
-  padding: 10px;
-  height: 35px;
-  border: none;
-  background: #060b0d;
-  color: $textColor;
-}
-
-textarea {
-  height: 150px;
-}
-// .arrow
-.arrow {
-  position: relative;
-  height: 10px;
-  width: 10px;
-  cursor: pointer;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    width: 0.15rem;
-    height: 100%;
-    transition: all 0.5s;
-  }
-
-  &::before {
-    left: -2.7px;
-    transform: rotate(-45deg);
-    background-color: $textSecondColor;
-  }
-
-  &::after {
-    left: 2.7px;
-    transform: rotate(45deg);
-    background-color: $textSecondColor;
-  }
-
-  .open &::before,
-  .active &::before {
-    left: -2.7px;
-    transform: rotate(45deg);
-  }
-
-  .open &::after,
-  .active &::after {
-    left: 2.7px;
-    transform: rotate(-45deg);
-  }
-
-  // .arrow--menu
-  &--menu {
-    // transform: scale(1, -1);
-  }
-}
-
-// .triangle
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 10px solid $textColor;
-  border-bottom: 0px solid transparent;
-  @include _transition(all, 0.5s);
-
-  .open &,
-  .active & {
-    border-top: 0px solid transparent;
-    border-bottom: 10px solid $textColor;
-  }
-}
-
-.main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 105px;
-}
-
-ol {
+ol,
+ul {
   list-style: none;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin: -10px;
-  flex-wrap: wrap;
-  width: 100%;
-
-  @media only screen and (min-width: 800px) {
-    margin: get-vw(-10px);
-  }
-}
-
-.coll {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 100%;
-  margin: 10px;
-
-  @media only screen and (min-width: 800px) {
-    width: 100%;
-    @include coll(2, 20px);
-    margin: get-vw(10px);
-  }
-}
-
-::placeholder {
-  color: $textColor;
-}
-
-::selection {
-  background-color: $accentColor;
-  color: #fff;
-}
-
 input,
 textarea {
   @include _transition(all, 0.5s);
   @extend .p;
-  // @include _borderRadius(5px);
   @include _borderRadius(0);
   padding: 10px;
-  // height: 35px;
   border: none;
-  // background: #060b0d;
   color: $textColor;
 
   &:focus:required:invalid {
@@ -496,6 +269,7 @@ button {
   @extend .p;
   border: none;
   cursor: pointer;
+  background: transparent;
 }
 
 a {
@@ -505,6 +279,174 @@ a {
   &:focus,
   &:hover {
     text-decoration: none;
+  }
+}
+
+footer,
+header,
+section,
+.section {
+  width: 100%;
+  display: flex;
+}
+
+.wrapper {
+  max-width: $maxWidthContainer + px;
+  width: calc(100% - 80px);
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  @media only screen and (max-width: 1024px) {
+    width: calc(100% - 55px);
+  }
+
+  @media only screen and (max-width: 600px) {
+    width: calc(100% - 30px);
+  }
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  @include vw(margin, -10px);
+  flex-wrap: wrap;
+  width: 100%;
+}
+.coll {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  @include vw(margin, 10px);
+
+  @media only screen and (min-width: 800px) {
+    width: 100%;
+    @include coll(2, 20px);
+  }
+}
+// .arrow
+.arrow {
+  position: relative;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+    transition: all 0.5s;
+  }
+
+  &::before {
+    left: -2.7px;
+    transform: rotate(-45deg);
+    background-color: $textSecondColor;
+  }
+
+  &::after {
+    left: 2.7px;
+    transform: rotate(45deg);
+    background-color: $textSecondColor;
+  }
+
+  .open &::before,
+  .active &::before {
+    left: -2.7px;
+    transform: rotate(45deg);
+  }
+
+  .open &::after,
+  .active &::after {
+    left: 2.7px;
+    transform: rotate(-45deg);
+  }
+
+  // .arrow-menu
+  &-menu {
+    // transform: scale(1, -1);
+  }
+}
+.img {
+  //.img_full
+  &_fullW {
+    width: 100%;
+    height: auto;
+  }
+  // .img_center
+  &_center {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  // .tab__container
+  &__container {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  // .tab__content
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    @include _transition(all, 0.35s);
+
+    &.__active {
+      max-height: unset;
+    }
+  }
+
+  // .tab__wrapper
+  &__wrapper {
+    opacity: 0;
+    @include _transition(all, 0.35s);
+    transform: translate(0, -100%);
+
+    .__active > & {
+      opacity: 1;
+      transform: translate(0, 0%);
+    }
+  }
+}
+// .triangle
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid $textColor;
+  border-bottom: 0px solid transparent;
+  @include _transition(all, 0.5s);
+
+  .open &,
+  .active & {
+    border-top: 0px solid transparent;
+    border-bottom: 10px solid $textColor;
   }
 }
 

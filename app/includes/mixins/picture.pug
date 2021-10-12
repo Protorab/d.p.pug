@@ -1,9 +1,12 @@
 mixin picture(imgPath,title,addClass,showModal)
-  picture(class=`${addClass ? `${addClass}-picture` : ""}`) 
+  picture(
+    itemscope,
+    itemtype='http://schema.org/ImageObject',
+    class=`${addClass ? `${addClass}-picture` : ""}`) 
     source(
       srcset="img/preloader.gif", 
       data-lazy-srcset!=`${imgPath}`)
-    img.img--full.img--center(
+    img.img_full.img_center(
       src="img/preloader.gif",
       data-lazy-src!=`${imgPath}`, 
       alt!=`${title}`,

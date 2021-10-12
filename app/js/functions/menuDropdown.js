@@ -7,7 +7,7 @@ const menuDropdown = () => {
       let dorpMenu = item.parentNode.querySelector(".menu__dropdown");
       let arrow = document.createElement("span");
       arrow.classList.add("arrow");
-      arrow.classList.add("arrow--menu");
+      arrow.classList.add("arrow-menu");
       if (dorpMenu) {
         item.parentNode.appendChild(arrow);
 
@@ -18,10 +18,10 @@ const menuDropdown = () => {
               navigator.userAgent
             )
           ) {
-            if (e.currentTarget.parentNode.classList.contains("--open")) {
-              e.currentTarget.parentNode.classList.remove("--open");
+            if (e.currentTarget.parentNode.classList.contains("__open")) {
+              e.currentTarget.parentNode.classList.remove("__open");
             } else {
-              e.currentTarget.parentNode.classList.add("--open");
+              e.currentTarget.parentNode.classList.add("__open");
             }
           }
         });

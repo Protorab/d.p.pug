@@ -5,13 +5,13 @@ const body = document.querySelector("body");
 
 export const modalOpen = (currentModal) => {
   if (currentModal && unlock) {
-    const modalOpen = document.querySelector(".modal.--open");
+    const modalOpen = document.querySelector(".modal.__open");
     if (modalOpen) {
       modalClose(modalOpen, false);
     } else {
       bodyLock();
     }
-    currentModal.classList.add("--open");
+    currentModal.classList.add("__open");
     currentModal.addEventListener("click", (e) => {
       const _this = e.currentTarget;
       if (!e.target.closest(".modal__content")) {
@@ -23,7 +23,7 @@ export const modalOpen = (currentModal) => {
 
 export const modalClose = (modalOpen, doUnlock = true) => {
   if (unlock) {
-    modalOpen.classList.remove("--open");
+    modalOpen.classList.remove("__open");
     if (doUnlock) {
       bodyUnlock();
     }
@@ -40,7 +40,7 @@ export const bodyLock = () => {
   }
 
   body.style.paddingRight = lockPaddingValue;
-  body.classList.add("--fixed");
+  body.classList.add("__fixed");
 
   unlock = false;
   setTimeout(() => {
@@ -55,7 +55,7 @@ export const bodyUnlock = () => {
       });
     }
     body.style.paddingRight = "0px";
-    body.classList.remove("--fixed");
+    body.classList.remove("__fixed");
   }, timeout);
   unlock = false;
   setTimeout(() => {

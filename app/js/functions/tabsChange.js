@@ -5,29 +5,29 @@ const tabsChange = () => {
   if (tabs.length > 0) {
     for (let i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
-      tab.setAttribute("data-index", i);
+      tab.setAttribute("data-tab-index", i);
 
       tab.addEventListener("click", (e) => {
+        e.preventDefault();
         const _this = e.currentTarget;
         let currentSection = _this.closest(".section");
-        e.preventDefault();
         _this.parentNode
-          .querySelector(".tab.--active")
-          .classList.remove("--active");
-        _this.classList.add("--active");
+          .querySelector(".tab.__active")
+          .classList.remove("__active");
+        _this.classList.add("__active");
         for (let j = 0; j < tabsContent.length; j++) {
           const tabContent = tabsContent[j];
-          tabContent.setAttribute("data-index", j);
+          tabContent.setAttribute("data-tab-content-index", j);
         }
         const activeTab = currentSection.querySelector(
-          ".tab__content.--active"
+          ".tab__content.__active"
         );
         const currentTab = document.querySelector(
-          `.tab__content[data-index='${i}']`
+          `.tab__content[data-tab-content-index='${i}']`
         );
-        activeTab.classList.remove("--active");
+        activeTab.classList.remove("__active");
         activeTab.style.maxHeight = null;
-        currentTab.classList.add("--active");
+        currentTab.classList.add("__active");
         currentTab.style.maxHeight = currentTab.scrollHeight + "px";
       });
     }

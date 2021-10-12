@@ -29,8 +29,8 @@
       &:nth-child(3) {
       }
     }
-    //.menu__burger.--clicked
-    &.--clicked {
+    //.menu__burger.__clicked
+    &.__clicked {
       span {
         &:nth-child(1) {
           transform: rotate(45deg) translate(9px, 10px);
@@ -77,11 +77,11 @@
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
       border-bottom: 8px solid $accentSecondColor;
 
-      &:not(.--show) {
+      &:not(.__show) {
         transition-delay: 0.4s;
       }
 
-      &.--show {
+      &.__show {
         transform: translate(0%, 0);
         transition-delay: 0;
       }
@@ -121,7 +121,7 @@
       }
 
       @media only screen and (min-width: 1024px) {
-        .arrow--menu {
+        .arrow-menu {
           &::before {
             left: -2.7px;
             transform: rotate(-45deg);
@@ -154,12 +154,12 @@
         display: none;
       }
 
-      &.--open {
+      &.__open {
         background: $accentSecondColor;
         transition-delay: 0s;
         z-index: 5;
 
-        .arrow--menu {
+        .arrow-menu {
           &::before {
             left: -2.7px;
             transform: rotate(-45deg);
@@ -184,7 +184,7 @@
         transition-delay: 0s;
       }
 
-      .--show & {
+      .__show & {
         opacity: 1;
         transform: translate(0%, 0);
 

@@ -7,11 +7,11 @@ function isVisible(elem) {
   let bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
   return topVisible || bottomVisible;
 }
-function showVisible() {
+function simpleAnimate() {
   for (let element of document.querySelectorAll(".animate.scroll")) {
     if (isVisible(element)) {
-      element.classList.add("__show");
+      element.classList.add("__animated");
     }
   }
 }
-export default showVisible;
+export default simpleAnimate;

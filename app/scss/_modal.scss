@@ -25,29 +25,20 @@
     max-width: 95%;
     max-height: 97%;
     display: flex;
-
-    // align-items: center;
-    // justify-content: center;
-    // .modal__body_Img
-    &.__img {
+    // .modal__body-img {
+    &-img {
       max-width: 95%;
       width: 100%;
       height: 100%;
       max-height: 97%;
-      overflow: hidden;
+      // overflow: hidden;
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: 1152px) {
         max-width: 95%;
-        // width: auto;
         height: auto;
         display: grid;
         grid-template-columns: repeat(1, 100%);
-
         max-height: 97%;
-        justify-content: center;
-        justify-items: center;
-        align-items: center;
-        align-content: center;
       }
     }
   }
@@ -66,7 +57,7 @@
     width: 100%;
     height: 100%;
 
-    .--open & {
+    .__open & {
       opacity: 1;
       transform: translate(0px, 0px);
     }
@@ -98,8 +89,41 @@
       }
     }
 
-    &:hover {
-      transform: scale(1.1);
+    // .modal__close-out {
+    &-out {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      top: -25px;
+      right: 0;
+      background: $accentColor;
+      @include _transition(all, 0.3s);
+
+      span {
+        position: absolute;
+        // right: 0%;
+        transform: rotate(45deg);
+        display: block;
+        background: $textColor;
+        width: 100%;
+        height: 3px;
+        // bottom: 10px;
+
+        &:nth-child(2) {
+          transform: rotate(-45deg);
+        }
+      }
+      @media only screen and (min-width: 1152px) {
+        top: 0;
+        right: -25px;
+
+        &:hover {
+          background: $accentSecondColor;
+        }
+      }
     }
   }
 
@@ -159,12 +183,12 @@
     cursor: pointer;
     margin: 0 auto;
     background: unset;
-    display: grid;
-    grid-template-columns: repeat(1, 100%);
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
+    // display: grid;
+    // grid-template-columns: repeat(1, 100%);
+    // justify-content: center;
+    // justify-items: center;
+    // align-items: center;
+    // align-content: center;
 
     img {
       width: 100%;
@@ -174,7 +198,7 @@
       object-fit: contain;
       object-position: center;
 
-      @media only screen and (min-width: 600px) {
+      @media only screen and (min-width: 1152px) {
         width: 100%;
         max-width: 100%;
         height: 100%;
@@ -183,7 +207,7 @@
       }
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 1152px) {
       // width: fit-content;
       width: auto;
       height: 100%;
@@ -193,11 +217,11 @@
       align-self: center;
     }
 
-    .--open & {
+    .__open & {
       transform: scale(1);
     }
   }
-  &.--open {
+  &.__open {
     opacity: 1;
     visibility: visible;
   }

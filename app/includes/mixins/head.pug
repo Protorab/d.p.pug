@@ -1,26 +1,48 @@
-mixin head(title)
+mixin head(title,description,keywords,ogImage,canonical,siteName,preconnects)
   head
+    //- general settings start
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
     meta(http-equiv="x-ua-compatible" content="IE=edge")
-    meta(name="description" content="") 
+    meta(name="msapplication-config" content="browserconfig.xml")
+    //- general settings end
+    //-  seo settings
+    meta(name="description" content=`${description ? description : "" }`) 
     meta(name="keywords" content="")
-    meta(name="msapplication-config" content="browserconfig.xml") 
+    //-  seo settings
+    
+    
+    //- og start
     meta(property="og:type" content="website") 
-    meta(property="og:site_name" content="url.site")
-    meta(property="og:title" content="") 
-    meta(property="og:description" content="")
-    meta(property="og:url" content="http(s)://url.site/") 
+    meta(property="og:site_name" content=`${siteName ? siteName : "" }`)
+    meta(property="og:title" content=`${title ? title : "Default Pack"}`) 
+    meta(property="og:description" content=`${description ? description : "" }`)
+    meta(property="og:url" content=`${canonical ? canonical : "" }`) 
     meta(property="og:locale" content="ru_RU") 
-    meta(property="og:image" content="http(s)://url.site/img/og.jpg") 
-    meta(property="og:image:width" content="968") 
-    meta(property="og:image:height" content="504")
-    link(rel="canonical" href="https://example.com")
+    meta(property="og:image" content=`${ogImage ? ogImage : ""}`) 
+    //- og end
 
-    link(rel="preconnect" href="//fonts.gstatic.com")
-    link(rel="preconnect" href="//cdnjs.cloudflare.com")
-    link(rel="preconnect" href="//google-analytics.com")
+    //- canonical start
+    link(rel="canonical" href=`${canonical ? canonical : ""}`)
+    //- canonical end
 
+    //- preconnect start
+    if preconnects
+      each preconnect, idx in preconnects
+        - var count = idx+1
+        - var preconnectUrl = preconnect[0]
+        link(rel="preconnect" href=`${preconnectUrl}`)
+    //- if gstatic
+    //-   link(rel="preconnect" href="https://fonts.google.com/")
+    //- if cdnjs
+    //-   link(rel="preconnect" href="//cdnjs.cloudflare.com")
+    //- if googleAnalytics
+    //-   link(rel="preconnect" href="//google-analytics.com")
+    //- if schemaOrg
+    //-   link(rel="preconnect" href="//schema.org/")
+    //- preconnect end
+
+    //- apple-touch-icon start
     link(rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-icon-57x57.png")
     link(rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-icon-60x60.png")
     link(rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-icon-72x72.png")
@@ -30,20 +52,36 @@ mixin head(title)
     link(rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-icon-144x144.png")
     link(rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-icon-152x152.png")
     link(rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-icon-180x180.png")
+    //- apple-touch-icon end
+    
+    //- icon start
     link(rel="icon" type="image/png" sizes="192x192"  href="img/favicons/android-icon-192x192.png")
     link(rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png")
     link(rel="icon" type="image/png" sizes="96x96" href="img/favicons/favicon-96x96.png")
     link(rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png")
-      
+    //- icon end
+
+    //- msapplication start
     meta(name="msapplication-TileImage" content="img/favicons/ms-icon-144x144.png")
     meta(name="msapplication-TileColor" content="#ffffff")
-    meta(name="theme-color" content="#ffffff")
+    //- msapplication end
 
+    //- theme-color start
+    meta(name="theme-color" content="#ffffff")
+    //- theme-color end
+    
+    //- apple-mobile-web-app start
     meta(name="apple-mobile-web-app-title" content="Название")
     meta(name="apple-mobile-web-app-capable" content="yes")
+    //- apple-mobile-web-app end
 
+    //- format-detection start
     meta(name="format-detection" content="telephone=no")
     meta(name="format-detection" content="address=no")
-    link(rel="stylesheet" href="css/main.min.css")
+    //- format-detection end
+
+    //- stylesheet start
+    link(rel="stylesheet", href="css/main.min.css")
+    //- stylesheet end
 
     title !{title ? title : "Default Pack"}

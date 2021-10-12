@@ -42,70 +42,74 @@
       }
     }
 
-    // .custom-select-input
-    &-input {
+    // .custom-select__input
+    &__input {
       position: absolute;
       height: 0;
       width: 0;
       pointer-events: none;
+      z-index: -1;
     }
-  }
+    // .custom-select__trigger
+    &__trigger {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      @include adaptive(font-size, 20, 18, 0);
+      width: 100%;
+      height: 35px;
+      // background: $mainColor;
+      cursor: pointer;
+      border: 1px solid $textColor;
 
-  &-select__trigger {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 22px;
-    @include adaptive(font-size, 20, 18, 0);
-    width: 100%;
-    height: 35px;
-    // background: $mainColor;
-    cursor: pointer;
-    border: 1px solid $textColor;
-
-    & > span {
-      margin-right: 14px;
-    }
-  }
-
-  &-options {
-    position: absolute;
-    display: block;
-    top: 95%;
-    left: 0;
-    right: 0;
-    border: 1px solid $textColor;
-    border-top: 0;
-    background: $mainColor;
-    @include _transition(all, 0.5s);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 2;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 8px 16px 0;
-  }
-
-  &-option {
-    position: relative;
-    display: block;
-    padding: 0 22px;
-    @extend .p;
-    cursor: pointer;
-    @include _transition(all, 0.5s);
-
-    &:hover {
-      background-color: $accentColor;
-      color: $mainColor;
+      & > span {
+        margin-right: 14px;
+      }
     }
 
-    &.selected {
-      color: $mainColor;
-      background-color: $accentColor;
+    // .custom-select__options {
+    &__options {
+      position: absolute;
+      display: block;
+      top: 95%;
+      left: 0;
+      right: 0;
+      border: 1px solid $textColor;
+      border-top: 0;
+      background: $mainColor;
+      @include _transition(all, 0.5s);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 2;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 8px 16px 0;
+    }
+
+    // .custom-select__option {
+    &__option {
+      position: relative;
+      display: block;
+      padding: 0 22px;
+      @extend .p;
+      cursor: pointer;
+      @include _transition(all, 0.5s);
+
+      &:hover {
+        background-color: $accentColor;
+        color: $mainColor;
+      }
+
+      &.selected {
+        color: $mainColor;
+        background-color: $accentColor;
+      }
     }
   }
 }
+
 .collapsible {
   // background-color: #777;
   // color: white;

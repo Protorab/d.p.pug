@@ -1,13 +1,10 @@
-const itemCountCheck = (
-  getMoreBtn,
-  getItems,
-  defText,
-  altText,
-  mobCount,
-  desktopCount
-) => {
-  let items = document.querySelectorAll(getItems);
-  let moreBtn = document.querySelector(getMoreBtn);
+const itemCountCheck = () => {
+  let moreBtn = document.querySelector("#get-more");
+  let items = moreBtn.parentNode.querySelectorAll(".item-count");
+  let mobCount = moreBtn.dataset.mobCount;
+  let desktopCount = moreBtn.dataset.desktopCount;
+  let defText = moreBtn.dataset.defText;
+  let altText = moreBtn.dataset.altText;
   var itemsCounter = window.innerWidth <= 800 ? mobCount : desktopCount;
   const hideRecipeStep = () => {
     for (let i = 0; i < items.length; i++) {

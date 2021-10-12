@@ -2,6 +2,7 @@ const simplePhoneMusk = () => {
   let phoneInputs = document.querySelectorAll("input[type=tel]");
   const handleInput = (e) => {
     e.target.value = phoneMask(e.target.value);
+    // e.target.value = /^(\+\d{3}\s)?\(?\d{2}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
   };
   const phoneMask = (phone) => {
     return phone
@@ -17,7 +18,8 @@ const simplePhoneMusk = () => {
 
     input.addEventListener("blur", (e) => {
       let _this = e.currentTarget;
-      _this.value.length < 14 ? (_this.value = "") : "";
+      let checkVal = _this.value.replace(/\D/g, "");
+      checkVal.length < 9 ? (_this.value = "") : "";
     });
   });
 };

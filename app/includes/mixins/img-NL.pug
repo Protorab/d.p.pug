@@ -1,5 +1,7 @@
 mixin img(imgPath,title,addClass,showModal)
-  img.img--full.img--center(
+  img.img_full.img_center(
+    itemscope,
+    itemtype='http://schema.org/ImageObject',
     src!=`${imgPath}`, 
     alt!=`${title}`,
     title!=`${title}`,

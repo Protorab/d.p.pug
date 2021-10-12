@@ -12,21 +12,25 @@
           placeholder="Введите имя",
           type="text",
           name="name",
+          title="Введите Ваше имя"
           )
         input.modal__form-input(
           required,
-          placeholder="Введите номер телефона (__) ___-__-__",
+          placeholder="Введите номер телефона",
           type="tel",
-          name="phone",
+          name="phone"
+          title="Введите Ваш номер телефона в формате - (**) ***-**-**",
           )
         input.modal__form-input(
           required,
           placeholder="Введите e-mail",
           type="email",
-          name="E-mail")
+          name="email",
+          title="Введите Ваш E-mail")
         textarea.modal__form-textarea(
           name="Сообщение",
           cols="30",
           rows="10",
-          placeholder="Введите текст")
+          placeholder="Введите текст",
+          title="Введите Ваше сообщение")
         button.btn(type='submit').btn.modal__btn Отправить 

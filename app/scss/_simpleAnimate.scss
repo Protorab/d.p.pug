@@ -3,7 +3,7 @@
   opacity: 0;
   transform: translate(0, 200px);
 
-  &.__show {
+  &.__animated {
     opacity: 1;
     transform: translate(0, 0%);
   }

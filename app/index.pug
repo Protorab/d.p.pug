@@ -3,10 +3,22 @@ html(lang="ru")
 
   //head start
   include ./includes/mixins/head
-  +head("Главная")
+  +head(
+    "Главная",
+    "standard default pack for website development",
+    "website,development",
+    "./img/img_1.jpg",
+    "http://localhost:3000/",
+    "default.pack",
+    [
+      ["https://analytics.google.com/"],
+      ["https://schema.org/"],
+      ["https://metrika.yandex.ru/"],
+      ["https://connect.facebook.net"]
+    ])
   //head end
 
-  body.--fixed.__loading
+  body.__fixed.__loading
     //preloader start
     include ./includes/parts/other/preloader
     //preloader end
@@ -18,6 +30,7 @@ html(lang="ru")
     //page-main start
     main.main.page-main 
       .wrapper
+        
     //page-main end
     
     //footer start
