@@ -30,8 +30,14 @@
 	},
 	"dependencies": {
 		"@splidejs/splide": "^2.4.21",
+		"i": "^0.3.7",
 		"inputmask": "^5.0.5",
-		"swiper": "^6.7.0",	 
+		"npm": "^8.0.0",
+		"stylelint": "^13.13.1",
+		"stylelint-declaration-block-no-ignored-properties": "^2.4.0",
+		"stylelint-order": "^4.1.0",
+		"stylelint-scss": "^3.21.0",
+		"swiper": "^6.7.0",
 		"wowjs": "^1.1.3"
 	}
 }

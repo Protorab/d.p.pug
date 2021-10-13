@@ -1,7 +1,7 @@
 .animate {
-  @include _transition(all, 0.56s);
   opacity: 0;
   transform: translate(0, 200px);
+  @include _transition(all, 0.56s);
 
   &.__animated {
     opacity: 1;
